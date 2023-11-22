@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="log4net" Version="2.0.15" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.13" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MonefyWeb.DistributedServices.Models\MonefyWeb.DistributedServices.Models.csproj" />
+    <ProjectReference Include="..\MonefyWeb.DomainServices.Domain\MonefyWeb.DomainServices.Domain.csproj" />
+    <ProjectReference Include="..\MonefyWeb.DomainServices.Models\MonefyWeb.DomainServices.Models.csproj" />
+    <ProjectReference Include="..\MonefyWeb.Infraestructure.Repository\MonefyWeb.Infraestructure.Repository.csproj" />
+    <ProjectReference Include="..\MonefyWeb.Transversal.Aspects\MonefyWeb.Transversal.Aspects.csproj" />
+    <ProjectReference Include="..\MonefyWeb.Transversal.Exceptions\MonefyWeb.Transversal.Exceptions.csproj" />
+    <ProjectReference Include="..\MonefyWeb.Transversal.Mappers\MonefyWeb.Transversal.Mappers.csproj" />
+    <ProjectReference Include="..\MonefyWeb.Transversal.Models\MonefyWeb.Transversal.Models.csproj" />
+    <ProjectReference Include="..\MonefyWeb.Transversal.Utils\MonefyWeb.Transversal.Utils.csproj" />
+  </ItemGroup>
+
+</Project>

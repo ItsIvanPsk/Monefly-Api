@@ -1,0 +1,47 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Contracts\**" />
+    <EmbeddedResource Remove="Contracts\**" />
+    <None Remove="Contracts\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="appsettings.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="log4net" Version="2.0.15" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.13" />
+	<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.13" />
+	<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.13">
+	  <PrivateAssets>all</PrivateAssets>
+	  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+	</PackageReference>
+	<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MonefyWeb.DomainServices.Models\MonefyWeb.DomainServices.Models.csproj" />
+    <ProjectReference Include="..\MonefyWeb.DomainServices.RepositoryContracts\MonefyWeb.DomainServices.RepositoryContracts.csproj" />
+    <ProjectReference Include="..\MonefyWeb.Infraestructure.Models\MonefyWeb.Infraestructure.Models.csproj" />
+    <ProjectReference Include="..\MonefyWeb.Transversal.Aspects\MonefyWeb.Transversal.Aspects.csproj" />
+    <ProjectReference Include="..\MonefyWeb.Transversal.Models\MonefyWeb.Transversal.Models.csproj" />
+  </ItemGroup>
+
+</Project>
