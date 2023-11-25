@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MonefyWeb.ApplicationService.Application.Contracts;
+using MonefyWeb.DistributedServices.Models.Models.Users;
 using MonefyWeb.DistributedServices.WebApi.Contracts;
 using MonefyWeb.DistributedServices.WebApi.Models;
 using MonefyWeb.Transversal.Aspects;
@@ -32,7 +33,9 @@ namespace MonefyWeb.DistributedServices.WebApi.Controllers
             [SwaggerParameter("1")][DefaultValue(1)][FromQuery] long UserId
         )
         {
-            return Ok(_application.GetUserData(UserId));
+            var result = _application.GetUserData(UserId);
+            if (result != new UserDataResponseDto()) { return Ok(result); }
+            return BadRequest(result);
         }
 
         [Log]
@@ -43,7 +46,9 @@ namespace MonefyWeb.DistributedServices.WebApi.Controllers
             LoginRequestDto request
         )
         {
-            return Ok(_application.LoginUser(request));
+            var result = _application.LoginUser(request);
+            if (result.Status == true) { return Ok(result); }
+            return BadRequest(result);
         }
 
         [Log]
@@ -53,7 +58,9 @@ namespace MonefyWeb.DistributedServices.WebApi.Controllers
             [SwaggerParameter("2")][DefaultValue(2)][FromRoute] string version,
             RegisterRequestDto request)
         {
-            return Ok(_application.RegisterUser(request));
+            var result = _application.RegisterUser(request);
+            if (result.Status == true) { return Ok(result); }
+            return BadRequest(result);
         }
     }
 }
