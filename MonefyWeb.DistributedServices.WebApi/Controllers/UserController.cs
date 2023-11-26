@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MonefyWeb.ApplicationServices.Application.Contracts;
 using MonefyWeb.DistributedServices.Models.Models.Users;
 using MonefyWeb.DistributedServices.WebApi.Contracts;
@@ -15,17 +16,20 @@ namespace MonefyWeb.DistributedServices.WebApi.Controllers
     public class UserController : ControllerBase, IUserController
     {
         private readonly IUserService _application;
+        private readonly IAuthenticationService _authentication;
         private readonly Transversal.Utils.ILogger _log;
 
 
-        public UserController(IUserService _application, Transversal.Utils.ILogger _log)
+        public UserController(IUserService _application, Transversal.Utils.ILogger _log, IAuthenticationService authentication)
         {
             this._application = _application;
             this._log = _log;
+            _authentication = authentication;
         }
 
         [Log]
         [Timer]
+        [Authorize]
         [HttpGet("GetUserData")]
         public IActionResult GetUserData(
             [SwaggerParameter("2")][DefaultValue(2)][FromRoute] string version,
@@ -46,8 +50,12 @@ namespace MonefyWeb.DistributedServices.WebApi.Controllers
         )
         {
             var result = _application.LoginUser(request);
-            if (result.Status == true) { return Ok(result); }
-            return BadRequest(result);
+            if (result.Status == true) 
+            {
+                var generatedToken = _authentication.GenerateToken(result.UserId);
+                return Ok(new { token = generatedToken });
+            }
+            return BadRequest("");
         }
 
         [Log]
