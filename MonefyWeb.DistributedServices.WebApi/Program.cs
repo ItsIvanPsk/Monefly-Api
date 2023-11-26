@@ -2,8 +2,8 @@ using AutoMapper;
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using MonefyWeb.ApplicationService.Application.Contracts;
-using MonefyWeb.ApplicationService.Application.Implementations;
+using MonefyWeb.ApplicationServices.Application.Contracts;
+using MonefyWeb.ApplicationServices.Application.Implementations;
 using MonefyWeb.DomainServices.Domain.Contracts;
 using MonefyWeb.DomainServices.Domain.Implementations;
 using MonefyWeb.Infraestructure.Repository;
@@ -12,12 +12,67 @@ using MonefyWeb.Infraestructure.Repository.Implementations;
 using MonefyWeb.Transversal.Mappers;
 using MonefyWeb.Transversal.Utils;
 using MonefyWeb.Transversal.Utils.Health_Check;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Add Jwt Authentication
+// ------------------------------------------------------------------------------------------------
+builder.Configuration.AddJsonFile("appsettings.json");
+var secretKey = builder.Configuration.GetSection("JwtDemo").GetSection("SecretKey").ToString();
+var keyBytes = Encoding.UTF8.GetBytes(secretKey);
+
+builder.Services.AddAuthentication(config =>
+{
+    config.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    config.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(config =>
+{
+    config.RequireHttpsMetadata = false;
+    config.SaveToken = true;
+    config.TokenValidationParameters = new TokenValidationParameters()
+    {
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey = new SymmetricSecurityKey(keyBytes),
+        ValidateIssuer = false,
+        ValidateAudience = false
+    };
+});
+
+// Add Jwt Authentication for Swagger
+// ------------------------------------------------------------------------------------------------
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(option =>
+{
+    option.SwaggerDoc("v1", new OpenApiInfo { Title = "Demo API", Version = "v2" });
+    option.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        In = ParameterLocation.Header,
+        Description = "Please enter a valid token",
+        Name = "Authorization",
+        Type = SecuritySchemeType.Http,
+        BearerFormat = "JWT",
+        Scheme = "Bearer"
+    });
+    option.AddSecurityRequirement(new OpenApiSecurityRequirement
+     {
+         {
+             new OpenApiSecurityScheme
+             {
+                 Reference = new OpenApiReference
+                 {
+                     Type=ReferenceType.SecurityScheme,
+                     Id="Bearer"
+                 }
+             },
+             new string[]{}
+         }
+     });
+});
 
 // Dependency Inyection
 // Configurations
@@ -34,6 +89,7 @@ builder.Services.AddScoped<IConnectionConfiguration, ConnectionConfiguration>();
 builder.Services.AddScoped<IAccountService, AccountService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
 
 builder.Services.AddScoped<IAccountDomain, AccountDomain>();
 builder.Services.AddScoped<ICategoryDomain, CategoryDomain>();
@@ -102,6 +158,10 @@ app.MapHealthChecks("/health", new()
 });
 
 app.UseHttpsRedirection();
+
+// Authentication
+// ------------------------------------------------------------------------------------------------
+app.UseAuthentication();
 
 app.UseAuthorization();
 

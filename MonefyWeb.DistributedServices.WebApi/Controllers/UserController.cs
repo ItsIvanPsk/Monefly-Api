@@ -1,7 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using MonefyWeb.ApplicationService.Application.Contracts;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using MonefyWeb.ApplicationServices.Application.Contracts;
+using MonefyWeb.DistributedServices.Models.Models.Users;
 using MonefyWeb.DistributedServices.WebApi.Contracts;
-using MonefyWeb.DistributedServices.WebApi.Models;
 using MonefyWeb.Transversal.Aspects;
 using MonefyWeb.Transversal.Models;
 using Swashbuckle.AspNetCore.Annotations;
@@ -15,24 +16,29 @@ namespace MonefyWeb.DistributedServices.WebApi.Controllers
     public class UserController : ControllerBase, IUserController
     {
         private readonly IUserService _application;
+        private readonly IAuthenticationService _authentication;
         private readonly Transversal.Utils.ILogger _log;
 
 
-        public UserController(IUserService _application, Transversal.Utils.ILogger _log)
+        public UserController(IUserService _application, Transversal.Utils.ILogger _log, IAuthenticationService authentication)
         {
             this._application = _application;
             this._log = _log;
+            _authentication = authentication;
         }
 
         [Log]
         [Timer]
+        [Authorize]
         [HttpGet("GetUserData")]
         public IActionResult GetUserData(
             [SwaggerParameter("2")][DefaultValue(2)][FromRoute] string version,
             [SwaggerParameter("1")][DefaultValue(1)][FromQuery] long UserId
         )
         {
-            return Ok(_application.GetUserData(UserId));
+            var result = _application.GetUserData(UserId);
+            if (result != new UserDataResponseDto()) { return Ok(result); }
+            return BadRequest(result);
         }
 
         [Log]
@@ -43,7 +49,13 @@ namespace MonefyWeb.DistributedServices.WebApi.Controllers
             LoginRequestDto request
         )
         {
-            return Ok(_application.LoginUser(request));
+            var result = _application.LoginUser(request);
+            if (result.Status == true) 
+            {
+                var generatedToken = _authentication.GenerateToken(result.UserId);
+                return Ok(new { token = generatedToken });
+            }
+            return BadRequest("");
         }
 
         [Log]
@@ -53,7 +65,9 @@ namespace MonefyWeb.DistributedServices.WebApi.Controllers
             [SwaggerParameter("2")][DefaultValue(2)][FromRoute] string version,
             RegisterRequestDto request)
         {
-            return Ok(_application.RegisterUser(request));
+            var result = _application.RegisterUser(request);
+            if (result.Status == true) { return Ok(result); }
+            return BadRequest(result);
         }
     }
 }

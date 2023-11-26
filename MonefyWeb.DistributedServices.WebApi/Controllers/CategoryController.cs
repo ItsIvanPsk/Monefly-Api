@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using MonefyWeb.ApplicationService.Application.Contracts;
+using MonefyWeb.ApplicationServices.Application.Contracts;
 using MonefyWeb.DistributedServices.Models.Models.Categories;
 using MonefyWeb.DistributedServices.WebApi.Contracts;
 using MonefyWeb.DistributedServices.WebApi.Validations;
@@ -29,6 +30,7 @@ namespace MonefyWeb.DistributedServices.WebApi.Controllers
 
         [Log]
         [Timer]
+        [Authorize]
         [HttpGet("GetCategories")]
         public IActionResult GetCategories(
             [SwaggerParameter("2")][DefaultValue(2)][FromRoute] string version
@@ -51,6 +53,7 @@ namespace MonefyWeb.DistributedServices.WebApi.Controllers
 
         [Log]
         [Timer]
+        [Authorize]
         [HttpGet("GetCategoriesByUserId")]
         public IActionResult GetCategoriesByUserId(
             [SwaggerParameter("2")][DefaultValue(2)][FromRoute] string version,

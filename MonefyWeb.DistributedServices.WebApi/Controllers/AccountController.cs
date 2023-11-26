@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using MonefyWeb.ApplicationService.Application.Contracts;
+using MonefyWeb.ApplicationServices.Application.Contracts;
 using MonefyWeb.DistributedServices.Models.Models.Accounts;
 using MonefyWeb.DistributedServices.Models.Models.Movements;
 using MonefyWeb.DistributedServices.WebApi.Contracts;
@@ -29,6 +30,7 @@ namespace MonefyWeb.DistributedServices.WebApi.Controllers
 
         [Log]
         [Timer]
+        [Authorize]
         [HttpPost("AddMovementToAccount")]
         [SwaggerResponse(StatusCodes.Status200OK, "Success")]
         [SwaggerOperation("AddMovementToAccount")]
@@ -50,6 +52,7 @@ namespace MonefyWeb.DistributedServices.WebApi.Controllers
 
         [Log]
         [Timer]
+        [Authorize]
         [HttpPost("GetAccountDataById")]
         [SwaggerResponse(StatusCodes.Status200OK, "Success")]
         [SwaggerOperation("GetAccountDataById")]
@@ -71,6 +74,7 @@ namespace MonefyWeb.DistributedServices.WebApi.Controllers
 
         [Log]
         [Timer]
+        [Authorize]
         [HttpPost("GetMovementsByAccountId")]
         [SwaggerResponse(StatusCodes.Status200OK, "Success")]
         [SwaggerOperation("GetMovementsByAccountId")]

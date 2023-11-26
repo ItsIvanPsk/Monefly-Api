@@ -26,7 +26,8 @@ namespace MonefyWeb.DomainServices.Domain.Implementations
 
         public UserLoginResponseDto LoginUser(LoginRequestDto request)
         {
-            return _mapper.Map<UserLoginResponseDto>(_user.LoginUser(request));
+            var result = _user.LoginUser(request);
+            return _mapper.Map<UserLoginResponseDto>(result);
         }
 
         public UserRegisterResponseDto RegisterUser(RegisterRequestDto request)
