@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
-using MonefyWeb.ApplicationService.Application.Contracts;
+using MonefyWeb.ApplicationServices.Application.Contracts;
 using MonefyWeb.DomainServices.Domain.Contracts;
 using MonefyWeb.DomainServices.Models.Models;
 using MonefyWeb.Transversal.Aspects;
 
-namespace MonefyWeb.ApplicationService.Application.Implementations
+namespace MonefyWeb.ApplicationServices.Application.Implementations
 {
     public class CategoryService : ICategoryService
     {

@@ -2,7 +2,7 @@
 using MonefyWeb.DistributedServices.WebApi.Models;
 using MonefyWeb.Transversal.Models;
 
-namespace MonefyWeb.ApplicationService.Application.Contracts
+namespace MonefyWeb.ApplicationServices.Application.Contracts
 {
     public interface IUserService
     {

@@ -1,12 +1,12 @@
 ﻿using AutoMapper;
-using MonefyWeb.ApplicationService.Application.Contracts;
+using MonefyWeb.ApplicationServices.Application.Contracts;
 using MonefyWeb.DistributedServices.Models.Models.Movements;
 using MonefyWeb.DomainServices.Domain.Contracts;
 using MonefyWeb.DomainServices.Models.Models;
 using MonefyWeb.Infraestructure.Models;
 using MonefyWeb.Transversal.Aspects;
 
-namespace MonefyWeb.ApplicationService.Application.Implementations
+namespace MonefyWeb.ApplicationServices.Application.Implementations
 {
     public class AccountService : IAccountService
     {

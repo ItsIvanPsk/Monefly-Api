@@ -1,12 +1,11 @@
 ﻿using AutoMapper;
-using MonefyWeb.ApplicationService.Application.Contracts;
+using MonefyWeb.ApplicationServices.Application.Contracts;
 using MonefyWeb.DistributedServices.Models.Models.Users;
-using MonefyWeb.DistributedServices.WebApi.Models;
 using MonefyWeb.DomainServices.Domain.Contracts;
 using MonefyWeb.Transversal.Aspects;
 using MonefyWeb.Transversal.Models;
 
-namespace MonefyWeb.ApplicationService.Application.Implementations
+namespace MonefyWeb.ApplicationServices.Application.Implementations
 {
     public class UserService : IUserService
     {
