@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using MonefyWeb.ApplicationService.Application.Contracts;
+using MonefyWeb.ApplicationServices.Application.Contracts;
 using MonefyWeb.DistributedServices.Models.Models.Categories;
 using MonefyWeb.DistributedServices.WebApi.Contracts;
 using MonefyWeb.DistributedServices.WebApi.Validations;

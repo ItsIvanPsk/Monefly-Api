@@ -1,7 +1,7 @@
 ﻿using MonefyWeb.DistributedServices.Models.Models.Movements;
 using MonefyWeb.DomainServices.Models.Models;
 
-namespace MonefyWeb.ApplicationService.Application.Contracts
+namespace MonefyWeb.ApplicationServices.Application.Contracts
 {
     public interface IAccountService
     {
