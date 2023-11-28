@@ -141,6 +141,30 @@ builder.Services
 
 var app = builder.Build();
 
+// Eliminar el encabezado "Server"
+app.Use((context, next) =>
+{
+    context.Response.OnStarting(() =>
+    {
+        context.Response.Headers.Remove("Server");
+        return Task.CompletedTask;
+    });
+
+    return next();
+});
+
+// Eliminar el encabezado "X-Powered-By"
+app.Use((context, next) =>
+{
+    context.Response.OnStarting(() =>
+    {
+        context.Response.Headers.Remove("X-Powered-By");
+        return Task.CompletedTask;
+    });
+
+    return next();
+});
+
 // Swagger Configuration
 // ------------------------------------------------------------------------------------------------
 app.UseSwagger();
