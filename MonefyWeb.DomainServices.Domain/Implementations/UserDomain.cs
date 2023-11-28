@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using MonefyWeb.DistributedServices.Models.Models.Users;
-using MonefyWeb.DistributedServices.WebApi.Models;
 using MonefyWeb.DomainServices.Domain.Contracts;
 using MonefyWeb.Infraestructure.Repository.Contracts;
 using MonefyWeb.Transversal.Models;
