@@ -16,6 +16,7 @@ namespace MonefyWeb.ApplicationServices.Application.Implementations
         {
             secretKey = configuration.GetSection("JwtDemo").GetSection("SecretKey").ToString();
         }
+
         public string GenerateToken(UserLoginResponseDto user)
         {
             var keyBytes = Encoding.UTF8.GetBytes(secretKey);

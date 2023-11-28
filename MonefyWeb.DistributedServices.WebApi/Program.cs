@@ -1,7 +1,10 @@
 using AutoMapper;
 using HealthChecks.UI.Client;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using MonefyWeb.ApplicationServices.Application.Contracts;
 using MonefyWeb.ApplicationServices.Application.Implementations;
 using MonefyWeb.DomainServices.Domain.Contracts;
@@ -12,10 +15,7 @@ using MonefyWeb.Infraestructure.Repository.Implementations;
 using MonefyWeb.Transversal.Mappers;
 using MonefyWeb.Transversal.Utils;
 using MonefyWeb.Transversal.Utils.Health_Check;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MonefyWeb.Infraestructure.Models.Models
+﻿namespace MonefyWeb.Infraestructure.Models.Models
 {
     public class AccountsCurrencies
     {

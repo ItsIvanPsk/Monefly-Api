@@ -1,5 +1,4 @@
 ﻿using MonefyWeb.DistributedServices.Models.Models.Users;
-using MonefyWeb.DistributedServices.WebApi.Models;
 using MonefyWeb.Transversal.Models;
 
 namespace MonefyWeb.ApplicationServices.Application.Contracts
