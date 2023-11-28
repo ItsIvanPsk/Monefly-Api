@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using MonefyWeb.ApplicationServices.Application.Contracts;
+using MonefyWeb.DistributedServices.Models.Models.Users;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -15,17 +16,19 @@ namespace MonefyWeb.ApplicationServices.Application.Implementations
         {
             secretKey = configuration.GetSection("JwtDemo").GetSection("SecretKey").ToString();
         }
-        public string GenerateToken(long userId)
+
+        public string GenerateToken(UserLoginResponseDto user)
         {
             var keyBytes = Encoding.UTF8.GetBytes(secretKey);
             var claims = new ClaimsIdentity();
 
-            claims.AddClaim(new Claim(ClaimTypes.NameIdentifier, userId.ToString()));
+            claims.AddClaim(new Claim("UserId", user.UserId.ToString()));
+            claims.AddClaim(new Claim("AccountId", user.AccountId.ToString()));
 
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = claims,
-                Expires = DateTime.UtcNow.AddMinutes(5),
+                Expires = DateTime.UtcNow.AddMinutes(60),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(keyBytes), SecurityAlgorithms.HmacSha256Signature)
             };
 

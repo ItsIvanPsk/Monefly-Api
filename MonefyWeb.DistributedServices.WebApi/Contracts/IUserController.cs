@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MonefyWeb.DistributedServices.WebApi.Models;
 using MonefyWeb.Transversal.Models;
 
 namespace MonefyWeb.DistributedServices.WebApi.Contracts

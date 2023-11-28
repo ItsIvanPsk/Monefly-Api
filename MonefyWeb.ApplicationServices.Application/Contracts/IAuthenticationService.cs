@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MonefyWeb.DistributedServices.Models.Models.Users;
 
 namespace MonefyWeb.ApplicationServices.Application.Contracts
 {
     public interface IAuthenticationService
     {
-        string GenerateToken(long userId);
+        string GenerateToken(UserLoginResponseDto user);
     }
 }

@@ -1,15 +1,14 @@
 ﻿using AutoMapper;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
 using MonefyWeb.ApplicationServices.Application.Contracts;
 using MonefyWeb.DistributedServices.Models.Models.Users;
 using MonefyWeb.DomainServices.Domain.Contracts;
 using MonefyWeb.Transversal.Aspects;
 using MonefyWeb.Transversal.Models;
-using System.Security.Claims;
-using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 using System.Text;
-using Microsoft.Extensions.Configuration;
-using Azure.Core;
 
 namespace MonefyWeb.ApplicationServices.Application.Implementations
 {
@@ -44,7 +43,7 @@ namespace MonefyWeb.ApplicationServices.Application.Implementations
         public UserDataResponseDto GetUserData(long UserId)
         {
             var result = _mapper.Map<UserDataResponseDto>(_domain.GetUserData(UserId));
-            if (result != new UserDataResponseDto() || result != null) 
+            if (result != new UserDataResponseDto() || result != null)
             {
                 var keyBytes = Encoding.UTF8.GetBytes(secretKey);
                 var claims = new ClaimsIdentity();
