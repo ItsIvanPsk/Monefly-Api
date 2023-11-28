@@ -52,7 +52,7 @@ namespace MonefyWeb.DistributedServices.WebApi.Controllers
             var result = _application.LoginUser(request);
             if (result.Status == true) 
             {
-                var generatedToken = _authentication.GenerateToken(result.UserId);
+                var generatedToken = _authentication.GenerateToken(result);
                 return Ok(new { token = generatedToken });
             }
             return BadRequest("");
