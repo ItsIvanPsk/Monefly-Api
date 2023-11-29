@@ -26,8 +26,10 @@ namespace MonefyWeb.Infraestructure.Models
 
         [Required]
         public long CategoryId { get; set; }
+        public long CurrencyId { get; set; }
 
         public virtual AccountDm Account { get; set; }
         public virtual CategoryDm Category { get; set; }
+        public virtual CurrencyDm Currency { get; set; }
     }
 }

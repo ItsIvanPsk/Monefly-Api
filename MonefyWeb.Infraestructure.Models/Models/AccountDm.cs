@@ -4,6 +4,8 @@
     {
         public long Id { get; set; }
         public long UserId { get; set; }
+        public string Name { get; set; }
+        public DateTime CreationDate { get; set; }
 
         public UserDm User { get; set; }
         public ICollection<MovementDm> Movements { get; set; }

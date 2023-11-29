@@ -30,7 +30,8 @@ namespace MonefyWeb.Infraestructure.Repository.Implementations
                 Date = dateTime,
                 Type = movement.Type,
                 PaymentMethod = movement.PaymentMethod,
-                CategoryId = movement.CategoryId
+                CategoryId = movement.CategoryId,
+                CurrencyId = movement.CurrencyId
             };
 
             _dbContext.Movements.Add(movementEntity);
@@ -40,7 +41,7 @@ namespace MonefyWeb.Infraestructure.Repository.Implementations
         }
 
         [Log]
-        public AccountBe GetAccountByUserId(long userId)
+        public AccountDm GetAccountByUserId(long userId)
         {
             var account = _dbContext.Accounts
                 .Include(a => a.User)
@@ -49,24 +50,25 @@ namespace MonefyWeb.Infraestructure.Repository.Implementations
 
             if (account != null)
             {
-                return new AccountBe
+                return new AccountDm
                 {
-                    AccountId = account.Id,
-                    User = new UserBe
+                    Id = account.Id,
+                    User = new UserDm
                     {
                         Id = account.User.Id,
-                        Name = account.User.Username
+                        Username = account.User.Username
                     },
-                    Movements = account.Movements.Select(m => new MovementBe
+                    Movements = account.Movements.Select(m => new MovementDm
                     {
-                        Movement_Id = m.Id,
-                        Account_Id = m.AccountId,
+                        Id = m.Id,
+                        AccountId = m.AccountId,
                         Concept = m.Concept,
                         Amount = m.Amount,
                         Date = m.Date,
-                        Type = (Transversal.Models.EMovementType)m.Type,
-                        PaymentMethod = (Transversal.Models.EPaymentMethod)m.PaymentMethod,
-                        CategoryId = m.CategoryId
+                        Type = m.Type,
+                        PaymentMethod = m.PaymentMethod,
+                        CategoryId = m.CategoryId,
+                        CurrencyId = m.CurrencyId
                     }).ToList()
                 };
             }
@@ -77,7 +79,7 @@ namespace MonefyWeb.Infraestructure.Repository.Implementations
         }
 
         [Log]
-        public List<MovementBe> GetMovementsByAccountId(long userId)
+        public List<MovementDm> GetMovementsByAccountId(long userId)
         {
             var accountId = _dbContext.Accounts
                 .Where(a => a.UserId == userId)
@@ -88,15 +90,15 @@ namespace MonefyWeb.Infraestructure.Repository.Implementations
             {
                 var movements = _dbContext.Movements
                     .Where(m => m.AccountId == accountId)
-                    .Select(m => new MovementBe
+                    .Select(m => new MovementDm
                     {
-                        Movement_Id = m.Id,
-                        Account_Id = m.Account.Id,
+                        Id = m.Id,
+                        AccountId = m.Account.Id,
                         Concept = m.Concept,
                         Amount = m.Amount,
                         Date = m.Date,
-                        Type = (Transversal.Models.EMovementType)m.Type,
-                        PaymentMethod = (Transversal.Models.EPaymentMethod)m.PaymentMethod,
+                        Type = m.Type,
+                        PaymentMethod = m.PaymentMethod,
                         CategoryId = m.Category.Id
                     })
                     .ToList();
