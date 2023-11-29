@@ -53,6 +53,7 @@ namespace MonefyWeb.Infraestructure.Repository.Implementations
                 return new AccountDm
                 {
                     Id = account.Id,
+                    Name = account.Name,
                     User = new UserDm
                     {
                         Id = account.User.Id,

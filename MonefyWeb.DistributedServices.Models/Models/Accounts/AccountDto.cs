@@ -5,8 +5,7 @@ namespace MonefyWeb.DistributedServices.Models.Models.Accounts
 {
     public class AccountDto
     {
-        [Key]
-        public long AccountId { get; set; }
+        public long Id { get; set; }
         public UserDto User { get; set; }
         public List<AccountMovementDto> Movements { get; set; }
     }

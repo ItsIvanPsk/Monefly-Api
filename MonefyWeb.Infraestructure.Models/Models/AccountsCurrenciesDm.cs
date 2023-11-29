@@ -6,13 +6,11 @@ using System.Threading.Tasks;
 
 namespace MonefyWeb.Infraestructure.Models.Models
 {
-    public class AccountConfiguration
+    public class AccountsCurrenciesDm
     {
-        public long Id { get; set; }
-        public int CurrencyFormat { get; set; }
-        public int CurrencyDefault { get; set; }
-        public int FirstDayOfWeek { get; set; }
         public long AccountId { get; set; }
+        public long CurrencyId { get; set; }
         public virtual AccountDm Account { get; set; }
+        public virtual CurrencyDm Currency { get; set; }
     }
 }
