@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MonefyWeb.DistributedServices.WebApi.Models;
 using MonefyWeb.DomainServices.Domain.Contracts;
 using MonefyWeb.DomainServices.Models.Models;
 using MonefyWeb.Infraestructure.Models;
@@ -20,49 +21,56 @@ namespace MonefyWeb.Infraestructure.Repository.Implementations
 
         [Log]
         [Timer]
-        public AccountConfigurationDm GetAccountConfiguration(long AccountId)
+        public AccountConfigurationDm GetAccountConfiguration(long accountId)
         {
             var result = new AccountConfigurationDm();
 
-            _dbContext.Set<AccountConfigurationDm>()
+            var accountConfiguration = _dbContext.AccountConfigurations
+                .Where(ac => ac.AccountId == accountId)
                 .Select(ac => new AccountConfigurationDm
                 {
-                    CurrencyFormat = ac.CurrencyFormat,
+                    Id = ac.Id,
+                    AccountId = ac.AccountId,
                     CurrencyDefault = ac.CurrencyDefault,
-                    FirstDayOfWeek = ac.FirstDayOfWeek,
-                    AccountId = ac.AccountId
+                    CurrencyFormat = ac.CurrencyFormat,
+                    FirstWeekDay = ac.FirstWeekDay
                 })
-                .Where(ac => ac.AccountId == AccountId);
+                .FirstOrDefault();
 
-            return result;
+            if (accountConfiguration != null)
+            {
+                return accountConfiguration;
+            }
+            else
+            {
+                throw new Exception("No account configuration associated with given account id has been found!");
+            }
         }
-
         [Log]
         [Timer]
         public bool SetAccountConfiguration(AccountConfigurationDm config)
         {
             try
             {
-                var existingAccount = _dbContext.Accounts.FirstOrDefault(a => a.Id == config.AccountId);
-
+                var existingAccount = _dbContext.AccountConfigurations.FirstOrDefault(a => a.AccountId == config.AccountId);
                 if (existingAccount != null)
                 {
-                    if (existingAccount.AccountConfiguration == null)
+                    existingAccount.CurrencyDefault = config.CurrencyDefault;
+                    existingAccount.CurrencyFormat = config.CurrencyFormat;
+                    existingAccount.FirstWeekDay = config.FirstWeekDay;
+                    _dbContext.SaveChanges();
+                    return true;
+                } else
+                {
+                    var newAccountConfiguration = new AccountConfigurationDm
                     {
-                        existingAccount.AccountConfiguration = new AccountConfigurationDm
-                        {
-                            CurrencyDefault = config.CurrencyDefault,
-                            CurrencyFormat = config.CurrencyFormat,
-                            FirstDayOfWeek = config.FirstDayOfWeek,
-                            AccountId = config.AccountId
-                        };
-                    } else
-                    {
-                        existingAccount.AccountConfiguration.CurrencyFormat = config.CurrencyFormat;
-                        existingAccount.AccountConfiguration.CurrencyDefault = config.CurrencyDefault;
-                        existingAccount.AccountConfiguration.FirstDayOfWeek = config.FirstDayOfWeek;
-                    }
+                        CurrencyDefault = config.CurrencyDefault,
+                        CurrencyFormat = config.CurrencyFormat,
+                        FirstWeekDay = config.FirstWeekDay,
+                        AccountId = config.AccountId
+                    };
 
+                    _dbContext.AccountConfigurations.Add(newAccountConfiguration);
                     _dbContext.SaveChanges();
                     return true;
                 }
@@ -72,8 +80,6 @@ namespace MonefyWeb.Infraestructure.Repository.Implementations
                 Console.WriteLine(ex.ToString());
                 return false;
             }
-
-            return false;
         }
     }
 }
