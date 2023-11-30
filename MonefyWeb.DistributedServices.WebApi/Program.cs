@@ -87,15 +87,18 @@ builder.Services.AddScoped<IConnectionConfiguration, ConnectionConfiguration>();
 // Contracts
 // ------------------------------------------------------------------------------------------------
 builder.Services.AddScoped<IAccountService, AccountService>();
+builder.Services.AddScoped<IAccountConfigurationService, AccountConfigurationService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
 
 builder.Services.AddScoped<IAccountDomain, AccountDomain>();
+builder.Services.AddScoped<IAccountConfigurationDomain, AccountConfigurationDomain>();
 builder.Services.AddScoped<ICategoryDomain, CategoryDomain>();
 builder.Services.AddScoped<IUserDomain, UserDomain>();
 
 builder.Services.AddScoped<IAccountRepository, AccountRepository>();
+builder.Services.AddScoped<IAccountConfigurationRepository, AccountConfigurationRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 

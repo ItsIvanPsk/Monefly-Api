@@ -29,7 +29,7 @@ namespace MonefyWeb.DistributedServices.WebApi.Controllers
 
         [Log]
         [Timer]
-        [Authorize]
+        //[Authorize]
         [HttpGet("GetUserData")]
         public IActionResult GetUserData(
             [SwaggerParameter("2")][DefaultValue(2)][FromRoute] string version,

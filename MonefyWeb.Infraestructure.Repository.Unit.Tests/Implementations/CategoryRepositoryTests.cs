@@ -1,6 +1,7 @@
 ﻿using Autofac.Extras.Moq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MonefyWeb.DomainServices.Models.Models;
+using MonefyWeb.Infraestructure.Models;
 using MonefyWeb.Infraestructure.Repository.Contracts;
 
 namespace MonefyWeb.Infraestructure.Repository.Implementations.Unit.Tests
@@ -14,7 +15,7 @@ namespace MonefyWeb.Infraestructure.Repository.Implementations.Unit.Tests
         {
             using var mock = AutoMock.GetLoose();
             var accountId = 1;
-            var expectedResult = new List<MovementBe> { };
+            var expectedResult = new List<MovementDm> { };
 
             mock.Mock<IAccountRepository>().
                 Setup(repository => repository.GetMovementsByAccountId(accountId)).
@@ -38,7 +39,7 @@ namespace MonefyWeb.Infraestructure.Repository.Implementations.Unit.Tests
         {
             using var mock = AutoMock.GetLoose();
             var accountId = 1;
-            var expectedResult = new List<MovementBe> { };
+            var expectedResult = new List<MovementDm> { };
 
             mock.Mock<IAccountRepository>().
                 Setup(repository => repository.GetMovementsByAccountId(accountId)).

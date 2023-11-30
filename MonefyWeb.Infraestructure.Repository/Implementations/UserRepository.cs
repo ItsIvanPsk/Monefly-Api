@@ -1,9 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MonefyWeb.DomainServices.Models.Models;
 using MonefyWeb.Infraestructure.Models;
+using MonefyWeb.Infraestructure.Models.Models;
 using MonefyWeb.Infraestructure.Repository.Contracts;
 using MonefyWeb.Transversal.Models;
+using MonefyWeb.Transversal.Exceptions;
 using System.Data.SqlTypes;
+using MonefyWeb.DistributedServices.WebApi.Models;
 
 namespace MonefyWeb.Infraestructure.Repository.Implementations
 {
@@ -66,11 +69,82 @@ namespace MonefyWeb.Infraestructure.Repository.Implementations
             return response;
         }
 
+        private List<CategoryDm> GetRandomCategories(List<CategoryDm> categories)
+        {
+            int numberOfRandomCategories = 3;
+
+            var random = new Random();
+
+            var randomIndices = new List<int>();
+            while (randomIndices.Count < numberOfRandomCategories)
+            {
+                int randomIndex = random.Next(0, categories.Count);
+                if (!randomIndices.Contains(randomIndex))
+                {
+                    randomIndices.Add(randomIndex);
+                }
+            }
+            return randomIndices.Select(index =>categories[index]).ToList();
+
+        }
+
+        private List<UsersCategoriesDm> GetUserCategories(List<CategoryDm> categories, long UserId)
+        {
+            var usersCategories = new List<UsersCategoriesDm>();
+
+            foreach (var category in categories)
+            {
+                usersCategories.Add(new UsersCategoriesDm
+                {
+                    UserId = UserId,
+                    CategoryId = category.Id,
+                });
+            }
+
+            return usersCategories;
+        }
+
+        private List<AccountsCurrenciesDm> GetAccountCurrencies(List<CurrencyDm> currencies, long AccountId)
+        {
+            var AccountCurrencies = new List<AccountsCurrenciesDm>();
+
+            foreach (var currency in currencies)
+            {
+                AccountCurrencies.Add(new AccountsCurrenciesDm
+                {
+                    AccountId = AccountId,
+                    CurrencyId = currency.Id
+                });
+            }
+
+            return AccountCurrencies;
+        }
+
+        private List<UsersAccountsDm> GetUserAccounts(long UserId, long AccountId)
+        {
+            var accounts = new List<UsersAccountsDm>
+            {
+                new UsersAccountsDm
+                {
+                    AccountId = AccountId,
+                    UserId = UserId
+                }
+            };
+
+            return accounts;
+        }
+
         public UserRegisterResponseBe RegisterUser(RegisterRequestDto request)
         {
             var response = new UserRegisterResponseBe();
             try
             {
+                var categories = GetRandomCategories(_dbContext.Categories.ToList());
+                var userCategories = GetRandomCategories(categories);
+
+                if (!userCategories.Any())
+                    throw new UserRegistrationException(nameof(userCategories));
+
                 var userEntity = new UserDm
                 {
                     Username = request.Name,
@@ -78,8 +152,63 @@ namespace MonefyWeb.Infraestructure.Repository.Implementations
                     Email = request.Email,
                 };
 
+                if (userEntity is null)
+                    throw new UserRegistrationException(nameof(userEntity));
+
                 _dbContext.Users.Add(userEntity);
                 _dbContext.SaveChanges();
+
+                userEntity.UsersCategories = GetUserCategories(userCategories, userEntity.Id);
+
+                if (userEntity.UsersCategories is null)
+                    throw new UserRegistrationException(nameof(userEntity));
+
+                var accountEntity = new List<AccountDm>
+                {
+                    new AccountDm
+                    {
+                        UserId = userEntity.Id,
+                        Name = request .Name + "'s account",
+                        CreationDate = DateTime.Now
+                    }
+                };
+
+                if (!accountEntity.Any())
+                    throw new UserRegistrationException(nameof(accountEntity));
+
+                _dbContext.Accounts.Add(accountEntity.First());
+                _dbContext.SaveChanges();
+
+                var currencies = _dbContext.Currencies.Select(c => new CurrencyDm { Id = c.Id, Name = c.Name, Symbol = c.Symbol }).ToList();
+
+                var accountsCurrencies = GetAccountCurrencies(currencies, accountEntity.First().Id);
+
+                if (!accountsCurrencies.Any())
+                    throw new UserRegistrationException(nameof(accountsCurrencies));
+
+                var accountConfiguration = new AccountConfigurationDm
+                {
+                    CurrencyDefault = 1,
+                    CurrencyFormat = 1,
+                    AccountId = accountEntity.First().Id,
+                    FirstDayOfWeek = 1
+                };
+
+                if (accountConfiguration is null)
+                    throw new UserRegistrationException(nameof(accountConfiguration));
+
+                var usersAccounts = GetUserAccounts(userEntity.Id, accountEntity.First().Id);
+
+                if (usersAccounts is null)
+                    throw new UserRegistrationException(nameof(usersAccounts));
+
+                userEntity.UsersAccounts = usersAccounts;
+                userEntity.Accounts = accountEntity;
+
+                _dbContext.Users.Add(userEntity);
+                _dbContext.Accounts.Add(accountEntity.First());
+                _dbContext.UsersAccounts.Add(usersAccounts.First());
+                _dbContext.SaveChanges();   
 
                 response.Status = true;
             }

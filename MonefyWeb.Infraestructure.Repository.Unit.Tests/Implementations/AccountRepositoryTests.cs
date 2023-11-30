@@ -39,7 +39,7 @@ namespace MonefyWeb.Infraestructure.Repository.Implementations.Unit.Tests
         {
             using var mock = AutoMock.GetLoose();
             var UserId = 1;
-            var expectedResult = new AccountBe { };
+            var expectedResult = new AccountDm { };
 
             mock.Mock<IAccountRepository>().
                 Setup(repository => repository.GetAccountByUserId(UserId)).
@@ -63,7 +63,7 @@ namespace MonefyWeb.Infraestructure.Repository.Implementations.Unit.Tests
         {
             using var mock = AutoMock.GetLoose();
             var accountId = 1;
-            var expectedResult = new List<MovementBe> { };
+            var expectedResult = new List<MovementDm> { };
 
             mock.Mock<IAccountRepository>().
                 Setup(repository => repository.GetMovementsByAccountId(accountId)).
