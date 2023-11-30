@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Identity.Client;
 using MonefyWeb.ApplicationServices.Application.Contracts;
 using MonefyWeb.DistributedServices.Models.Models.Accounts;
 using MonefyWeb.DistributedServices.Models.Models.Movements;
@@ -70,6 +71,22 @@ namespace MonefyWeb.DistributedServices.WebApi.Controllers
                 return BadRequest(errores);
             }
             return Ok(_application.GetAccountByUserId(UserId));
+        }
+
+        [Log]
+        [Timer]
+        //[Authorize]
+        [HttpPost("GetMovementDetailData")]
+        [SwaggerResponse(StatusCodes.Status200OK, "Success")]
+        [SwaggerOperation("GetMovementDetailData")]
+        public IActionResult GetMovementDetailData(
+            [SwaggerParameter("1")][DefaultValue(1)][FromBody] long AccountId,
+            [SwaggerParameter("2")][DefaultValue(2)][FromRoute] string version
+        ) {
+            var result = _application.GetMovementDetailData(AccountId);
+            if (result.Count == 0)
+                return BadRequest(result);
+            return Ok(result);
         }
 
         [Log]
