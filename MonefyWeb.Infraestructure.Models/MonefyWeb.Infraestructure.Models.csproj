@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MonefyWeb.Transversal.Models\MonefyWeb.Transversal.Models.csproj" />
+    <ProjectReference Include="..\MonefyWeb.Transversal.Utils\MonefyWeb.Transversal.Utils.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -10,5 +10,7 @@ namespace MonefyWeb.DistributedServices.WebApi.Contracts
         IActionResult GetMovementsByAccountId([FromBody] long AccountId, [FromRoute] string version);
 
         IActionResult AddMovementToAccount([FromBody] MovementRequestDto movement, [FromRoute] string version);
+
+        IActionResult GetMovementDetailData([FromBody] long AccountId, [FromRoute] string version);
     }
 }
