@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using MonefyWeb.DistributedServices.Models.Models.Accounts;
 using MonefyWeb.DomainServices.Domain.Contracts;
+using MonefyWeb.DomainServices.Models.Models;
 using MonefyWeb.Infraestructure.Models;
 using MonefyWeb.Infraestructure.Repository.Contracts;
 using MonefyWeb.Transversal.Aspects;
@@ -25,21 +25,21 @@ namespace MonefyWeb.DomainServices.Domain.Implementations
         }
 
         [Log]
-        public bool AddMovementToAccount(MovementDm movement)
+        public bool AddMovementToAccount(MovementBe movement)
         {
-            return _account.AddMovementToAccount(movement);
+            return _account.AddMovementToAccount(_mapper.Map<MovementDm>(movement));
         }
 
         [Log]
-        public AccountDto GetAccountByUserId(long userId)
+        public AccountBe GetAccountByUserId(long userId)
         {
-            return _mapper.Map<AccountDto>(_account.GetAccountByUserId(userId));
+            return _mapper.Map<AccountBe>(_account.GetAccountByUserId(userId));
         }
 
         [Log]
-        public List<AccountMovementDto> GetMovementsByAccountId(long accountId)
+        public List<MovementBe> GetMovementsByAccountId(long accountId)
         {
-            return _mapper.Map<List<AccountMovementDto>>(_account.GetMovementsByAccountId(accountId));
+            return _mapper.Map<List<MovementBe>>(_account.GetMovementsByAccountId(accountId));
         }
     }
 }

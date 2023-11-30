@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MonefyWeb.DistributedServices.Models.Models.Accounts;
 using MonefyWeb.DomainServices.Domain.Contracts;
+using MonefyWeb.DomainServices.Models.Models;
 using MonefyWeb.Infraestructure.Models;
 
 namespace MonefyWeb.DomainServices.Domain.Implementations.Unit.Tests
@@ -14,7 +15,7 @@ namespace MonefyWeb.DomainServices.Domain.Implementations.Unit.Tests
         public void AddMovementToAccountTest()
         {
             using var mock = AutoMock.GetLoose();
-            var movement = new MovementDm { };
+            var movement = new MovementBe { };
             var expectedResult = true;
 
             mock.Mock<IAccountDomain>().
@@ -39,7 +40,7 @@ namespace MonefyWeb.DomainServices.Domain.Implementations.Unit.Tests
         {
             using var mock = AutoMock.GetLoose();
             var UserId = 1;
-            var expectedResult = new AccountDto { };
+            var expectedResult = new AccountBe { };
 
             mock.Mock<IAccountDomain>().
                 Setup(domain => domain.GetAccountByUserId(UserId)).
@@ -63,7 +64,7 @@ namespace MonefyWeb.DomainServices.Domain.Implementations.Unit.Tests
         {
             using var mock = AutoMock.GetLoose();
             var AccountId = 1;
-            var expectedResult = new List<AccountMovementDto> { };
+            var expectedResult = new List<MovementBe> { };
 
             mock.Mock<IAccountDomain>().
                 Setup(domain => domain.GetMovementsByAccountId(AccountId)).

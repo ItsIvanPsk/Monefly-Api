@@ -30,7 +30,7 @@ namespace MonefyWeb.DistributedServices.WebApi.Controllers
 
         [Log]
         [Timer]
-        [Authorize]
+        //[Authorize]
         [HttpGet("GetCategories")]
         public IActionResult GetCategories(
             [SwaggerParameter("2")][DefaultValue(2)][FromRoute] string version
@@ -53,7 +53,7 @@ namespace MonefyWeb.DistributedServices.WebApi.Controllers
 
         [Log]
         [Timer]
-        [Authorize]
+        //[Authorize]
         [HttpGet("GetCategoriesByUserId")]
         public IActionResult GetCategoriesByUserId(
             [SwaggerParameter("2")][DefaultValue(2)][FromRoute] string version,

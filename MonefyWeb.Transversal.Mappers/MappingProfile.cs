@@ -1,11 +1,14 @@
 ﻿using AutoMapper;
+using MonefyWeb.DistributedServices.Models.Models.Account_Configuration;
 using MonefyWeb.DistributedServices.Models.Models.Accounts;
 using MonefyWeb.DistributedServices.Models.Models.Categories;
 using MonefyWeb.DistributedServices.Models.Models.Movements;
 using MonefyWeb.DistributedServices.Models.Models.Users;
 using MonefyWeb.DistributedServices.WebApi.Models;
+using MonefyWeb.DomainServices.Domain.Contracts;
 using MonefyWeb.DomainServices.Models.Models;
 using MonefyWeb.Infraestructure.Models;
+using MonefyWeb.Infraestructure.Models.Models;
 
 namespace MonefyWeb.Transversal.Mappers
 {
@@ -24,28 +27,27 @@ namespace MonefyWeb.Transversal.Mappers
 
             CreateMap<MovementRequestDto, AccountMovementDto>().ReverseMap();
 
-            CreateMap<MovementDm, MovementRequestDto>().ReverseMap();
+            CreateMap<MovementDm, MovementBe>().ReverseMap();
 
-            CreateMap<UserBe, UserDto>();
-            CreateMap<UserDto, UserBe>();
+            CreateMap<MovementBe,  MovementRequestDto>().ReverseMap();
 
-            CreateMap<UserDm, UserBe>();
-            CreateMap<UserBe, UserDm>();
+            CreateMap<UserBe, UserDto>().ReverseMap();
 
-            CreateMap<UserLoginResponseDto, UserLoginResponseBe>();
-            CreateMap<UserLoginResponseBe, UserLoginResponseDto>();
+            CreateMap<UserDm, UserBe>().ReverseMap();
 
-            CreateMap<UserDataResponseDto, UserDataResponseBe>();
-            CreateMap<UserDataResponseBe, UserDataResponseDto>();
+            CreateMap<UserLoginResponseDto, UserLoginResponseBe>().ReverseMap();
 
-            CreateMap<UserRegisterResponseDto, UserRegisterResponseBe>();
-            CreateMap<UserRegisterResponseBe, UserRegisterResponseDto>();
+            CreateMap<UserDataResponseDto, UserDataResponseBe>().ReverseMap();
 
-            CreateMap<CategoryDto, CategoryBe>();
-            CreateMap<CategoryBe, CategoryDto>();
+            CreateMap<UserRegisterResponseDto, UserRegisterResponseBe>().ReverseMap();
 
-            CreateMap<CategoryBe, CategoryDm>();
-            CreateMap<CategoryDm, CategoryBe>();
+            CreateMap<CategoryDto, CategoryBe>().ReverseMap();
+
+            CreateMap<CategoryBe, CategoryDm>().ReverseMap();
+
+            CreateMap<AccountConfigurationDto, AccountConfigurationBe>().ReverseMap();
+
+            CreateMap<AccountConfigurationBe, AccountConfigurationDm>().ReverseMap();
         }
     }
 }

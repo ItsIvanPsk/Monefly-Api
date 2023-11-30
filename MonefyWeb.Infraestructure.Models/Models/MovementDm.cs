@@ -14,8 +14,6 @@ namespace MonefyWeb.Infraestructure.Models
         public decimal Amount { get; set; }
 
         [Required]
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime Date { get; set; }
 
         [Required]
@@ -26,8 +24,10 @@ namespace MonefyWeb.Infraestructure.Models
 
         [Required]
         public long CategoryId { get; set; }
+        public long CurrencyId { get; set; }
 
         public virtual AccountDm Account { get; set; }
         public virtual CategoryDm Category { get; set; }
+        public virtual CurrencyDm Currency { get; set; }
     }
 }

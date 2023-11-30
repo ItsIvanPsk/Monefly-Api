@@ -1,6 +1,7 @@
 ﻿using Autofac.Extras.Moq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MonefyWeb.ApplicationServices.Application.Contracts;
+using MonefyWeb.DistributedServices.Models.Models.Accounts;
 using MonefyWeb.DistributedServices.Models.Models.Movements;
 using MonefyWeb.DomainServices.Models.Models;
 using MonefyWeb.Transversal.Models;
@@ -65,7 +66,7 @@ namespace MonefyWeb.ApplicationServices.Application.Implementations.Unit.Tests
         {
             using var mock = AutoMock.GetLoose();
             var userId = 1;
-            var expectedResult = new AccountBe { };
+            var expectedResult = new AccountDto { };
 
             mock.Mock<IAccountService>().
                 Setup(service => service.GetAccountByUserId(userId)).
@@ -103,7 +104,7 @@ namespace MonefyWeb.ApplicationServices.Application.Implementations.Unit.Tests
         {
             using var mock = AutoMock.GetLoose();
             var accountId = 1;
-            var expectedResult = new List<MovementBe>() { };
+            var expectedResult = new List<MovementRequestDto>() { };
 
             mock.Mock<IAccountService>().
                 Setup(service => service.GetMovementsByAccountId(accountId)).

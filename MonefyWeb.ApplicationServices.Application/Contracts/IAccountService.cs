@@ -1,12 +1,12 @@
-﻿using MonefyWeb.DistributedServices.Models.Models.Movements;
-using MonefyWeb.DomainServices.Models.Models;
+﻿using MonefyWeb.DistributedServices.Models.Models.Accounts;
+using MonefyWeb.DistributedServices.Models.Models.Movements;
 
 namespace MonefyWeb.ApplicationServices.Application.Contracts
 {
     public interface IAccountService
     {
-        AccountBe GetAccountByUserId(long userId);
-        List<MovementBe> GetMovementsByAccountId(long accountId);
+        AccountDto GetAccountByUserId(long userId);
+        List<MovementRequestDto> GetMovementsByAccountId(long accountId);
         bool AddMovementToAccount(MovementRequestDto movement);
     }
 }

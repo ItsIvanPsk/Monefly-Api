@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using MonefyWeb.Infraestructure.Models.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace MonefyWeb.Infraestructure.Models
 {
@@ -11,5 +12,7 @@ namespace MonefyWeb.Infraestructure.Models
 
         [Required]
         public string Symbol { get; set; }
+        public virtual ICollection<MovementDm> Movements { get; set; }
+        public virtual ICollection<AccountsCurrenciesDm> AccountsCurrencies { get; set; }
     }
 }
