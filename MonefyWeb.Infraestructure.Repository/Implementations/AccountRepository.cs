@@ -1,6 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using MonefyWeb.DistributedServices.WebApi.Models;
-using MonefyWeb.DomainServices.Models.Models;
 using MonefyWeb.Infraestructure.Models;
 using MonefyWeb.Infraestructure.Repository.Contracts;
 using MonefyWeb.Transversal.Aspects;
