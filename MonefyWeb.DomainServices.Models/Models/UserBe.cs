@@ -1,6 +1,4 @@
-﻿using System.Text.Json.Serialization;
-
-namespace MonefyWeb.DistributedServices.WebApi.Models
+﻿namespace MonefyWeb.DistributedServices.WebApi.Models
 {
     public class UserBe
     {

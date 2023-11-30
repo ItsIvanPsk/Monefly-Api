@@ -1,11 +1,7 @@
 ﻿using AutoMapper;
 using MonefyWeb.ApplicationServices.Application.Contracts;
 using MonefyWeb.DistributedServices.Models.Models.Account_Configuration;
-using MonefyWeb.DistributedServices.Models.Models.Accounts;
-using MonefyWeb.DistributedServices.Models.Models.Movements;
 using MonefyWeb.DomainServices.Domain.Contracts;
-using MonefyWeb.DomainServices.Models.Models;
-using MonefyWeb.Infraestructure.Models.Models;
 using MonefyWeb.Transversal.Aspects;
 
 namespace MonefyWeb.ApplicationServices.Application.Implementations

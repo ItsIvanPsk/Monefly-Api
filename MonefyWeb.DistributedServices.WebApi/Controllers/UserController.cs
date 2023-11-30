@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using MonefyWeb.ApplicationServices.Application.Contracts;
 using MonefyWeb.DistributedServices.Models.Models.Users;
 using MonefyWeb.DistributedServices.WebApi.Contracts;

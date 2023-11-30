@@ -3,7 +3,7 @@ using MonefyWeb.DistributedServices.Models.Models.Account_Configuration;
 
 namespace MonefyWeb.DistributedServices.WebApi.Validations
 {
-    public class AccountConfigurationValidator: AbstractValidator<AccountConfigurationDto>
+    public class AccountConfigurationValidator : AbstractValidator<AccountConfigurationDto>
     {
         public AccountConfigurationValidator()
         {

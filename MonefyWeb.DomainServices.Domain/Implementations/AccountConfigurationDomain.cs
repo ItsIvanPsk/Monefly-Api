@@ -1,12 +1,7 @@
 ﻿using AutoMapper;
-using Microsoft.Identity.Client;
-using MonefyWeb.DistributedServices.Models.Models.Account_Configuration;
 using MonefyWeb.DomainServices.Domain.Contracts;
-using MonefyWeb.DomainServices.Models.Models;
-using MonefyWeb.Infraestructure.Models;
 using MonefyWeb.Infraestructure.Models.Models;
 using MonefyWeb.Infraestructure.Repository.Contracts;
-using MonefyWeb.Transversal.Aspects;
 
 namespace MonefyWeb.DomainServices.Domain.Implementations
 {

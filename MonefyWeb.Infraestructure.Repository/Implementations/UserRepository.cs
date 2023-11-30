@@ -3,10 +3,9 @@ using MonefyWeb.DomainServices.Models.Models;
 using MonefyWeb.Infraestructure.Models;
 using MonefyWeb.Infraestructure.Models.Models;
 using MonefyWeb.Infraestructure.Repository.Contracts;
-using MonefyWeb.Transversal.Models;
 using MonefyWeb.Transversal.Exceptions;
+using MonefyWeb.Transversal.Models;
 using System.Data.SqlTypes;
-using MonefyWeb.DistributedServices.WebApi.Models;
 
 namespace MonefyWeb.Infraestructure.Repository.Implementations
 {
@@ -84,7 +83,7 @@ namespace MonefyWeb.Infraestructure.Repository.Implementations
                     randomIndices.Add(randomIndex);
                 }
             }
-            return randomIndices.Select(index =>categories[index]).ToList();
+            return randomIndices.Select(index => categories[index]).ToList();
 
         }
 
@@ -208,7 +207,7 @@ namespace MonefyWeb.Infraestructure.Repository.Implementations
                 _dbContext.Users.Add(userEntity);
                 _dbContext.Accounts.Add(accountEntity.First());
                 _dbContext.UsersAccounts.Add(usersAccounts.First());
-                _dbContext.SaveChanges();   
+                _dbContext.SaveChanges();
 
                 response.Status = true;
             }

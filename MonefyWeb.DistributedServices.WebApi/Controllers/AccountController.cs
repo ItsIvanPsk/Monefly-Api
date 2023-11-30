@@ -1,7 +1,5 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Identity.Client;
 using MonefyWeb.ApplicationServices.Application.Contracts;
 using MonefyWeb.DistributedServices.Models.Models.Accounts;
 using MonefyWeb.DistributedServices.Models.Models.Movements;
@@ -82,7 +80,8 @@ namespace MonefyWeb.DistributedServices.WebApi.Controllers
         public IActionResult GetMovementDetailData(
             [SwaggerParameter("1")][DefaultValue(1)][FromQuery] long AccountId,
             [SwaggerParameter("2")][DefaultValue(2)][FromRoute] string version
-        ) {
+        )
+        {
             var result = _application.GetMovementDetailData(AccountId);
             if (result.Count == 0)
                 return BadRequest(result);
