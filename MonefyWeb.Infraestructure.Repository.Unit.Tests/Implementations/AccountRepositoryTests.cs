@@ -14,7 +14,7 @@ namespace MonefyWeb.Infraestructure.Repository.Implementations.Unit.Tests
         public void AddMovementToAccountTest()
         {
             using var mock = AutoMock.GetLoose();
-            var movement = new MovementDm { };
+            var movement = new MovementBe { };
             var expectedResult = true;
 
             mock.Mock<IAccountRepository>().
