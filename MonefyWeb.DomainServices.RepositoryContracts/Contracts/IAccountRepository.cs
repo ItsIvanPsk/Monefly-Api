@@ -6,7 +6,7 @@ namespace MonefyWeb.Infraestructure.Repository.Contracts
     public interface IAccountRepository
     {
         bool AddMovementToAccount(MovementDm movement);
-        AccountBe GetAccountByUserId(long userId);
-        List<MovementBe> GetMovementsByAccountId(long accountId);
+        AccountDm GetAccountByUserId(long userId);
+        List<MovementDm> GetMovementsByAccountId(long accountId);
     }
 }

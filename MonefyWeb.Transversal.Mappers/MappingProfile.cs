@@ -24,7 +24,8 @@ namespace MonefyWeb.Transversal.Mappers
 
             CreateMap<MovementRequestDto, AccountMovementDto>().ReverseMap();
 
-            CreateMap<MovementDm, MovementRequestDto>().ReverseMap();
+            CreateMap<MovementDm, MovementBe>().ReverseMap();
+            CreateMap<MovementBe,  MovementRequestDto>().ReverseMap();
 
             CreateMap<UserBe, UserDto>();
             CreateMap<UserDto, UserBe>();

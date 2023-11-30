@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MonefyWeb.Infraestructure.Models;
+using MonefyWeb.Infraestructure.Models.Models;
 
 public class ApplicationDbContext : DbContext
 {
@@ -31,6 +32,15 @@ public class ApplicationDbContext : DbContext
             .HasOne(a => a.User)
             .WithMany(u => u.Accounts)
             .HasForeignKey(a => a.UserId)
+            .IsRequired();
+
+        modelBuilder.Entity<AccountDm>()
+            .Property(b => b.Name)
+            .HasMaxLength(100)
+            .IsRequired();
+
+        modelBuilder.Entity<AccountDm>()
+            .Property(b => b.CreationDate)
             .IsRequired();
 
         // Create a Many-to-Many relationship with UsersAccountsDm
@@ -84,10 +94,47 @@ public class ApplicationDbContext : DbContext
             .WithMany(p => p.Movements)
             .HasForeignKey(a => a.CategoryId);
 
+        modelBuilder.Entity<MovementDm>()
+            .HasOne(b => b.Currency)
+            .WithMany(p => p.Movements)
+            .HasForeignKey(a => a.CurrencyId);
+
         // Configure the Currencies table
         modelBuilder.Entity<CurrencyDm>().ToTable("Currencies");
         modelBuilder.Entity<CurrencyDm>()
             .HasKey(c => c.Id);
+
+        modelBuilder.Entity<CurrencyDm>()
+            .Property(b => b.Name)
+            .HasMaxLength(100)
+            .IsRequired();
+
+        modelBuilder.Entity<CurrencyDm>()
+            .Property(b => b.Symbol)
+            .HasMaxLength(10)
+            .IsRequired();
+
+        // Configure the AccountConfiguration table
+        modelBuilder.Entity<AccountConfigurationDm>().ToTable("AccountConfigurations");
+        modelBuilder.Entity<AccountConfigurationDm>()
+            .HasKey(ac => ac.Id);
+
+        modelBuilder.Entity<AccountConfigurationDm>()
+            .Property(b => b.CurrencyFormat)
+            .IsRequired();
+
+        modelBuilder.Entity<AccountConfigurationDm>()
+            .Property(b => b.CurrencyDefault)
+            .IsRequired();
+
+        modelBuilder.Entity<AccountConfigurationDm>()
+            .Property(b => b.FirstDayOfWeek)
+            .IsRequired();
+
+        modelBuilder.Entity<AccountConfigurationDm>()
+            .HasOne(b => b.Account)
+            .WithOne(p => p.AccountConfiguration)
+            .HasForeignKey<AccountConfigurationDm>(b => b.AccountId);
 
         // Configure the UsersCategories table (Many-to-Many)
         modelBuilder.Entity<UsersCategoriesDm>().ToTable("Users_Categories");
@@ -114,5 +161,19 @@ public class ApplicationDbContext : DbContext
             .HasOne(ua => ua.Account)
             .WithMany(a => a.UsersAccounts)
             .HasForeignKey(ua => ua.AccountId);
+
+        // Configure the Accounts_Currencies table (Many-to-Many)
+        modelBuilder.Entity<AccountsCurrenciesDm>().ToTable("Accounts_Currencies");
+        modelBuilder.Entity<AccountsCurrenciesDm>()
+            .HasKey(uc => new { uc.AccountId, uc.CurrencyId });
+        modelBuilder.Entity<AccountsCurrenciesDm>()
+            .HasOne(uc => uc.Account)
+            .WithMany(u => u.AccountsCurrencies)
+            .HasForeignKey(uc => uc.AccountId);
+        modelBuilder.Entity<AccountsCurrenciesDm>()
+            .HasOne(uc => uc.Currency)
+            .WithMany(c => c.AccountsCurrencies)
+            .HasForeignKey(uc => uc.CurrencyId);
+
     }
 }
