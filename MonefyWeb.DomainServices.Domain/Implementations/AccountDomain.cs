@@ -36,6 +36,11 @@ namespace MonefyWeb.DomainServices.Domain.Implementations
             return _mapper.Map<AccountBe>(_account.GetAccountByUserId(userId));
         }
 
+        public List<MovementDetailBe> GetMovementDetailData(long accountId)
+        {
+            return _mapper.Map<List<MovementDetailBe>>(_account.GetMovementDetailData(accountId));
+        }
+
         [Log]
         public List<MovementBe> GetMovementsByAccountId(long accountId)
         {

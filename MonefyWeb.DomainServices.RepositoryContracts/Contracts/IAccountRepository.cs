@@ -1,4 +1,5 @@
-﻿using MonefyWeb.DomainServices.Models.Models;
+﻿using MonefyWeb.DomainServices.Domain.Contracts;
+using MonefyWeb.DomainServices.Models.Models;
 using MonefyWeb.Infraestructure.Models;
 
 namespace MonefyWeb.Infraestructure.Repository.Contracts
@@ -7,6 +8,7 @@ namespace MonefyWeb.Infraestructure.Repository.Contracts
     {
         bool AddMovementToAccount(MovementBe movement);
         AccountDm GetAccountByUserId(long userId);
+        List<MovementDetailDm> GetMovementDetailData(long accountId);
         List<MovementDm> GetMovementsByAccountId(long accountId);
     }
 }

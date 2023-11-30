@@ -78,6 +78,29 @@ namespace MonefyWeb.Infraestructure.Repository.Implementations
             }
         }
 
+        public List<MovementDetailDm> GetMovementDetailData(long accountId)
+        {
+            var result = new List<MovementDetailDm>();
+            var movements = _dbContext.Movements
+                .Where(m => m.AccountId == accountId).ToList();
+
+            foreach (var movement in movements)
+            {
+                result.Add(new MovementDetailDm
+                {
+                    Amount = movement.Amount,
+                    MovementDate = movement.Date,
+                    Type = (EMovementType)movement.Type,
+                    PaymentMethod = (EPaymentMethod)movement.PaymentMethod,
+                    CategoryId = movement.CategoryId,
+                    CategoryName = _dbContext.Categories.Where(c => c.Id == accountId).Select(c => c.Name).First(),
+                    CurrencyId = movement.CurrencyId
+                });
+            }
+
+            return result;
+        }
+
         [Log]
         public List<MovementDm> GetMovementsByAccountId(long userId)
         {
