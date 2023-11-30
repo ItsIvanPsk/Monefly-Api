@@ -46,33 +46,31 @@ namespace MonefyWeb.Infraestructure.Repository.Implementations
                 throw new Exception("No account configuration associated with given account id has been found!");
             }
         }
-
         [Log]
         [Timer]
         public bool SetAccountConfiguration(AccountConfigurationDm config)
         {
             try
             {
-                var existingAccount = _dbContext.Accounts.FirstOrDefault(a => a.Id == config.AccountId);
-
+                var existingAccount = _dbContext.AccountConfigurations.FirstOrDefault(a => a.AccountId == config.AccountId);
                 if (existingAccount != null)
                 {
-                    if (existingAccount.AccountConfiguration == null)
+                    existingAccount.CurrencyDefault = config.CurrencyDefault;
+                    existingAccount.CurrencyFormat = config.CurrencyFormat;
+                    existingAccount.FirstWeekDay = config.FirstWeekDay;
+                    _dbContext.SaveChanges();
+                    return true;
+                } else
+                {
+                    var newAccountConfiguration = new AccountConfigurationDm
                     {
-                        existingAccount.AccountConfiguration = new AccountConfigurationDm
-                        {
-                            CurrencyDefault = config.CurrencyDefault,
-                            CurrencyFormat = config.CurrencyFormat,
-                            FirstWeekDay = config.FirstWeekDay,
-                            AccountId = config.AccountId
-                        };
-                    } else
-                    {
-                        existingAccount.AccountConfiguration.CurrencyFormat = config.CurrencyFormat;
-                        existingAccount.AccountConfiguration.CurrencyDefault = config.CurrencyDefault;
-                        existingAccount.AccountConfiguration.FirstWeekDay = config.FirstWeekDay;
-                    }
+                        CurrencyDefault = config.CurrencyDefault,
+                        CurrencyFormat = config.CurrencyFormat,
+                        FirstWeekDay = config.FirstWeekDay,
+                        AccountId = config.AccountId
+                    };
 
+                    _dbContext.AccountConfigurations.Add(newAccountConfiguration);
                     _dbContext.SaveChanges();
                     return true;
                 }
@@ -82,8 +80,6 @@ namespace MonefyWeb.Infraestructure.Repository.Implementations
                 Console.WriteLine(ex.ToString());
                 return false;
             }
-
-            return false;
         }
     }
 }
