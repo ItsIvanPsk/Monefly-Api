@@ -9,9 +9,7 @@ namespace MonefyWeb.DomainServices.Models.Models
         public long AccountId { get; set; }
         public string Concept { get; set; }
         public decimal Amount { get; set; }
-        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
-        [DataType(DataType.Date)]
-        public DateTime Date { get; set; }
+        public DateTime MovementDate { get; set; }
         public EMovementType Type { get; set; }
         public EPaymentMethod PaymentMethod { get; set; }
         public long CategoryId { get; set; }

@@ -1,7 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MonefyWeb.DomainServices.Models.Models;
 using MonefyWeb.Infraestructure.Models;
 using MonefyWeb.Infraestructure.Repository.Contracts;
 using MonefyWeb.Transversal.Aspects;
+using MonefyWeb.Transversal.Models;
 using System.Data.SqlTypes;
 
 namespace MonefyWeb.Infraestructure.Repository.Implementations
@@ -16,7 +18,7 @@ namespace MonefyWeb.Infraestructure.Repository.Implementations
         }
 
         [Log]
-        public bool AddMovementToAccount(MovementDm movement)
+        public bool AddMovementToAccount(MovementBe movement)
         {
             var movementEntity = new MovementDm
             {
@@ -24,9 +26,9 @@ namespace MonefyWeb.Infraestructure.Repository.Implementations
                 AccountId = movement.AccountId,
                 Concept = movement.Concept,
                 Amount = movement.Amount,
-                Date = movement.Date,
-                Type = movement.Type,
-                PaymentMethod = movement.PaymentMethod,
+                Date = movement.MovementDate,
+                Type = (int) movement.Type,
+                PaymentMethod = (int) movement.PaymentMethod,
                 CategoryId = movement.CategoryId,
                 CurrencyId = movement.CurrencyId
             };

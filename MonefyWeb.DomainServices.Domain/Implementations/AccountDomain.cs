@@ -27,7 +27,7 @@ namespace MonefyWeb.DomainServices.Domain.Implementations
         [Log]
         public bool AddMovementToAccount(MovementBe movement)
         {
-            return _account.AddMovementToAccount(_mapper.Map<MovementDm>(movement));
+            return _account.AddMovementToAccount(movement);
         }
 
         [Log]
