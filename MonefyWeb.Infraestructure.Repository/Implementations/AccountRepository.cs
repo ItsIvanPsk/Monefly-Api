@@ -18,14 +18,13 @@ namespace MonefyWeb.Infraestructure.Repository.Implementations
         [Log]
         public bool AddMovementToAccount(MovementDm movement)
         {
-            var dateTime = DateTime.Now;
             var movementEntity = new MovementDm
             {
                 Id = movement.Id,
                 AccountId = movement.AccountId,
                 Concept = movement.Concept,
                 Amount = movement.Amount,
-                Date = dateTime,
+                Date = movement.Date,
                 Type = movement.Type,
                 PaymentMethod = movement.PaymentMethod,
                 CategoryId = movement.CategoryId,

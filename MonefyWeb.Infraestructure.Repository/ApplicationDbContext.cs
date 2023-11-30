@@ -12,10 +12,7 @@ public class ApplicationDbContext : DbContext
     public DbSet<UsersCategoriesDm> UsersCategories { get; set; }
     public DbSet<UsersAccountsDm> UsersAccounts { get; set; }
 
-    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
-        : base(options)
-    {
-    }
+    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

@@ -29,6 +29,7 @@
     <ProjectReference Include="..\MonefyWeb.DomainServices.RepositoryContracts\MonefyWeb.DomainServices.RepositoryContracts.csproj" />
     <ProjectReference Include="..\MonefyWeb.Infraestructure.Models\MonefyWeb.Infraestructure.Models.csproj" />
     <ProjectReference Include="..\MonefyWeb.Transversal.Aspects\MonefyWeb.Transversal.Aspects.csproj" />
+    <ProjectReference Include="..\MonefyWeb.Transversal.Exceptions\MonefyWeb.Transversal.Exceptions.csproj" />
     <ProjectReference Include="..\MonefyWeb.Transversal.Models\MonefyWeb.Transversal.Models.csproj" />
   </ItemGroup>
 

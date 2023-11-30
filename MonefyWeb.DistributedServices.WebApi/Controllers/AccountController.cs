@@ -30,7 +30,7 @@ namespace MonefyWeb.DistributedServices.WebApi.Controllers
 
         [Log]
         [Timer]
-        [Authorize]
+        //[Authorize]
         [HttpPost("AddMovementToAccount")]
         [SwaggerResponse(StatusCodes.Status200OK, "Success")]
         [SwaggerOperation("AddMovementToAccount")]
@@ -52,7 +52,7 @@ namespace MonefyWeb.DistributedServices.WebApi.Controllers
 
         [Log]
         [Timer]
-        [Authorize]
+        //[Authorize]
         [HttpPost("GetAccountDataById")]
         [SwaggerResponse(StatusCodes.Status200OK, "Success")]
         [SwaggerOperation("GetAccountDataById")]
@@ -74,7 +74,7 @@ namespace MonefyWeb.DistributedServices.WebApi.Controllers
 
         [Log]
         [Timer]
-        [Authorize]
+        //[Authorize]
         [HttpPost("GetMovementsByAccountId")]
         [SwaggerResponse(StatusCodes.Status200OK, "Success")]
         [SwaggerOperation("GetMovementsByAccountId")]
