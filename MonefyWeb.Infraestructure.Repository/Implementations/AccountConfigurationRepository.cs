@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MonefyWeb.DistributedServices.WebApi.Models;
 using MonefyWeb.DomainServices.Domain.Contracts;
 using MonefyWeb.DomainServices.Models.Models;
 using MonefyWeb.Infraestructure.Models;
@@ -20,21 +21,30 @@ namespace MonefyWeb.Infraestructure.Repository.Implementations
 
         [Log]
         [Timer]
-        public AccountConfigurationDm GetAccountConfiguration(long AccountId)
+        public AccountConfigurationDm GetAccountConfiguration(long accountId)
         {
             var result = new AccountConfigurationDm();
 
-            _dbContext.Set<AccountConfigurationDm>()
+            var accountConfiguration = _dbContext.AccountConfigurations
+                .Where(ac => ac.AccountId == accountId)
                 .Select(ac => new AccountConfigurationDm
                 {
-                    CurrencyFormat = ac.CurrencyFormat,
+                    Id = ac.Id,
+                    AccountId = ac.AccountId,
                     CurrencyDefault = ac.CurrencyDefault,
-                    FirstDayOfWeek = ac.FirstDayOfWeek,
-                    AccountId = ac.AccountId
+                    CurrencyFormat = ac.CurrencyFormat,
+                    FirstWeekDay = ac.FirstWeekDay
                 })
-                .Where(ac => ac.AccountId == AccountId);
+                .FirstOrDefault();
 
-            return result;
+            if (accountConfiguration != null)
+            {
+                return accountConfiguration;
+            }
+            else
+            {
+                throw new Exception("No account configuration associated with given account id has been found!");
+            }
         }
 
         [Log]
@@ -53,14 +63,14 @@ namespace MonefyWeb.Infraestructure.Repository.Implementations
                         {
                             CurrencyDefault = config.CurrencyDefault,
                             CurrencyFormat = config.CurrencyFormat,
-                            FirstDayOfWeek = config.FirstDayOfWeek,
+                            FirstWeekDay = config.FirstWeekDay,
                             AccountId = config.AccountId
                         };
                     } else
                     {
                         existingAccount.AccountConfiguration.CurrencyFormat = config.CurrencyFormat;
                         existingAccount.AccountConfiguration.CurrencyDefault = config.CurrencyDefault;
-                        existingAccount.AccountConfiguration.FirstDayOfWeek = config.FirstDayOfWeek;
+                        existingAccount.AccountConfiguration.FirstWeekDay = config.FirstWeekDay;
                     }
 
                     _dbContext.SaveChanges();
