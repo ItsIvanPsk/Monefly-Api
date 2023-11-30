@@ -1,8 +1,4 @@
-﻿using Microsoft.Identity.Client;
-using MonefyWeb.ApplicationServices.Application.Contracts;
-using MonefyWeb.DistributedServices.Models.Models.Accounts;
-using MonefyWeb.DomainServices.Models.Models;
-using MonefyWeb.Infraestructure.Models;
+﻿using MonefyWeb.DomainServices.Models.Models;
 
 namespace MonefyWeb.DomainServices.Domain.Contracts
 {

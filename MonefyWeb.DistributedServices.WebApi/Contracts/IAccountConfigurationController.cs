@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MonefyWeb.DistributedServices.Models.Models.Account_Configuration;
-using MonefyWeb.DistributedServices.Models.Models.Movements;
 
 namespace MonefyWeb.DistributedServices.WebApi.Contracts
 {

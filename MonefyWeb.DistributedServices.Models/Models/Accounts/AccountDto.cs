@@ -1,5 +1,4 @@
 ﻿using MonefyWeb.DistributedServices.Models.Models.Users;
-using System.ComponentModel.DataAnnotations;
 
 namespace MonefyWeb.DistributedServices.Models.Models.Accounts
 {

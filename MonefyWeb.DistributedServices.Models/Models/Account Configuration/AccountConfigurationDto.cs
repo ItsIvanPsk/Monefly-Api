@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MonefyWeb.DistributedServices.Models.Models.Account_Configuration
+﻿namespace MonefyWeb.DistributedServices.Models.Models.Account_Configuration
 {
     public class AccountConfigurationDto
     {

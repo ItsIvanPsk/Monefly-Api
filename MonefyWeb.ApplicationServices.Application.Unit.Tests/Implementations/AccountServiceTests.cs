@@ -3,9 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MonefyWeb.ApplicationServices.Application.Contracts;
 using MonefyWeb.DistributedServices.Models.Models.Accounts;
 using MonefyWeb.DistributedServices.Models.Models.Movements;
-using MonefyWeb.DomainServices.Models.Models;
 using MonefyWeb.Transversal.Models;
-using System.Collections.Generic;
 
 namespace MonefyWeb.ApplicationServices.Application.Implementations.Unit.Tests
 {

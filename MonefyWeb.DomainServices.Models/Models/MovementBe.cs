@@ -1,5 +1,4 @@
 ﻿using MonefyWeb.Transversal.Models;
-using System.ComponentModel.DataAnnotations;
 
 namespace MonefyWeb.DomainServices.Models.Models
 {

@@ -27,8 +27,8 @@ namespace MonefyWeb.Infraestructure.Repository.Implementations
                 Concept = movement.Concept,
                 Amount = movement.Amount,
                 Date = movement.MovementDate,
-                Type = (int) movement.Type,
-                PaymentMethod = (int) movement.PaymentMethod,
+                Type = (int)movement.Type,
+                PaymentMethod = (int)movement.PaymentMethod,
                 CategoryId = movement.CategoryId,
                 CurrencyId = movement.CurrencyId
             };

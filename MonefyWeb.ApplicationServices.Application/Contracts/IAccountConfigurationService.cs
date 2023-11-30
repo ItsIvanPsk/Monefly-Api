@@ -1,8 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using MonefyWeb.DistributedServices.Models.Models.Account_Configuration;
-using MonefyWeb.DistributedServices.Models.Models.Accounts;
-using MonefyWeb.DistributedServices.Models.Models.Movements;
-using MonefyWeb.DomainServices.Domain.Contracts;
+﻿using MonefyWeb.DistributedServices.Models.Models.Account_Configuration;
 
 namespace MonefyWeb.ApplicationServices.Application.Contracts
 {

@@ -1,12 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
-using MonefyWeb.DistributedServices.WebApi.Models;
-using MonefyWeb.DomainServices.Domain.Contracts;
-using MonefyWeb.DomainServices.Models.Models;
-using MonefyWeb.Infraestructure.Models;
-using MonefyWeb.Infraestructure.Models.Models;
+﻿using MonefyWeb.Infraestructure.Models.Models;
 using MonefyWeb.Infraestructure.Repository.Contracts;
 using MonefyWeb.Transversal.Aspects;
-using System.Data.SqlTypes;
 
 namespace MonefyWeb.Infraestructure.Repository.Implementations
 {
@@ -60,7 +54,8 @@ namespace MonefyWeb.Infraestructure.Repository.Implementations
                     existingAccount.FirstWeekDay = config.FirstWeekDay;
                     _dbContext.SaveChanges();
                     return true;
-                } else
+                }
+                else
                 {
                     var newAccountConfiguration = new AccountConfigurationDm
                     {

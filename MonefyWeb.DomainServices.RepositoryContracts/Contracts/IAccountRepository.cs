@@ -1,5 +1,4 @@
-﻿using MonefyWeb.DomainServices.Domain.Contracts;
-using MonefyWeb.DomainServices.Models.Models;
+﻿using MonefyWeb.DomainServices.Models.Models;
 using MonefyWeb.Infraestructure.Models;
 
 namespace MonefyWeb.Infraestructure.Repository.Contracts
