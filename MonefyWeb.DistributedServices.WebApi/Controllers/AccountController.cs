@@ -80,7 +80,7 @@ namespace MonefyWeb.DistributedServices.WebApi.Controllers
         [SwaggerResponse(StatusCodes.Status200OK, "Success")]
         [SwaggerOperation("GetMovementDetailData")]
         public IActionResult GetMovementDetailData(
-            [SwaggerParameter("1")][DefaultValue(1)][FromBody] long AccountId,
+            [SwaggerParameter("1")][DefaultValue(1)][FromQuery] long AccountId,
             [SwaggerParameter("2")][DefaultValue(2)][FromRoute] string version
         ) {
             var result = _application.GetMovementDetailData(AccountId);
