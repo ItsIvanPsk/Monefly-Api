@@ -5,6 +5,6 @@
         public int AccountId { get; set; }
         public int CurrencyFormat { get; set; }
         public int CurrencyDefault { get; set; }
-        public int FirstDayWeek { get; set; }
+        public int FirstWeekDay { get; set; }
     }
 }

@@ -191,7 +191,7 @@ namespace MonefyWeb.Infraestructure.Repository.Implementations
                     CurrencyDefault = 1,
                     CurrencyFormat = 1,
                     AccountId = accountEntity.First().Id,
-                    FirstDayOfWeek = 1
+                    FirstWeekDay = 1
                 };
 
                 if (accountConfiguration is null)

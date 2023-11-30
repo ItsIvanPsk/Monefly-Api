@@ -11,6 +11,8 @@ public class ApplicationDbContext : DbContext
     public DbSet<CurrencyDm> Currencies { get; set; }
     public DbSet<UsersCategoriesDm> UsersCategories { get; set; }
     public DbSet<UsersAccountsDm> UsersAccounts { get; set; }
+    public DbSet<AccountsCurrenciesDm> AccountsCurrencies { get; set; }
+    public DbSet<AccountConfigurationDm> AccountConfigurations { get; set; }
 
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
@@ -125,7 +127,7 @@ public class ApplicationDbContext : DbContext
             .IsRequired();
 
         modelBuilder.Entity<AccountConfigurationDm>()
-            .Property(b => b.FirstDayOfWeek)
+            .Property(b => b.FirstWeekDay)
             .IsRequired();
 
         modelBuilder.Entity<AccountConfigurationDm>()

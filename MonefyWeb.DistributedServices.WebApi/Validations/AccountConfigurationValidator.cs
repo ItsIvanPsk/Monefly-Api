@@ -9,15 +9,15 @@ namespace MonefyWeb.DistributedServices.WebApi.Validations
         {
             RuleFor(ac => ac.CurrencyDefault)
                     .NotEmpty().WithMessage(Properties.Resources.ValueCannotBeEmpty)
-                    .LessThan(0).WithMessage(Properties.Resources.ValueMustBeGreatherThan0);
+                    .GreaterThan(0).WithMessage(Properties.Resources.ValueMustBeGreatherThan0);
 
             RuleFor(ac => ac.CurrencyFormat)
                     .NotEmpty().WithMessage(Properties.Resources.ValueCannotBeEmpty)
-                    .LessThan(0).WithMessage(Properties.Resources.ValueMustBeGreatherThan0);
+                    .GreaterThan(0).WithMessage(Properties.Resources.ValueMustBeGreatherThan0);
 
-            RuleFor(ac => ac.FirstDayWeek)
+            RuleFor(ac => ac.FirstWeekDay)
                     .NotEmpty().WithMessage(Properties.Resources.ValueCannotBeEmpty)
-                    .LessThan(0).WithMessage(Properties.Resources.ValueMustBeGreatherThan0);
+                    .GreaterThan(0).WithMessage(Properties.Resources.ValueMustBeGreatherThan0);
 
         }
     }
