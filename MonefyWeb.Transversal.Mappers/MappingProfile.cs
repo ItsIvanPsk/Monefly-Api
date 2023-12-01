@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using MonefyWeb.ApplicationServices.Application.Contracts;
 using MonefyWeb.DistributedServices.Models.Models.Account_Configuration;
 using MonefyWeb.DistributedServices.Models.Models.Accounts;
 using MonefyWeb.DistributedServices.Models.Models.Categories;
@@ -9,6 +10,7 @@ using MonefyWeb.DomainServices.Domain.Contracts;
 using MonefyWeb.DomainServices.Models.Models;
 using MonefyWeb.Infraestructure.Models;
 using MonefyWeb.Infraestructure.Models.Models;
+using MonefyWeb.Infraestructure.Repository.Contracts;
 
 namespace MonefyWeb.Transversal.Mappers
 {
@@ -48,6 +50,10 @@ namespace MonefyWeb.Transversal.Mappers
             CreateMap<AccountConfigurationDto, AccountConfigurationBe>().ReverseMap();
 
             CreateMap<AccountConfigurationBe, AccountConfigurationDm>().ReverseMap();
+
+            CreateMap<MovementDetailDto, MovementDetailBe>().ReverseMap();
+
+            CreateMap<MovementDetailBe, MovementDetailDm>().ReverseMap();
         }
     }
 }
