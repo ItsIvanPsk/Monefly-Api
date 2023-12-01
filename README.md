@@ -20,10 +20,10 @@ GitFlow has been followed for the development of the project, taking into accoun
 
 ### Github Project
 
-- User stories have been created in [project kanban](https://github.com/users/ItsIvanPsk/projects/9).
+- User stories have been created in [project kanban](https://github.com/users/ItsIvanPsk/projects/10).
 - Each user story has N technical tasks, each with its own issue.
 
-- A [release](https://github.com/ItsIvanPsk/FizzBuzzVuelingExam/releases) has been generated with the name "Vueling First Exam Release v1.0" with the label "v1.0". This will be the final release.
+- A [release](https://github.com/ItsIvanPsk/Monefly-Api/releases) has been generated with the name "Vueling First Exam Release v1.0" with the label "v1.0". This will be the final release.
 
 Due to the casuistry of this project I have decided to add ALL the project files, however in a real project, a ".gitignore" should be used to avoid uploading some of the configuration files.
 
