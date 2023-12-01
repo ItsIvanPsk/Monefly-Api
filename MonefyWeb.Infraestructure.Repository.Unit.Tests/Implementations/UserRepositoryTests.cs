@@ -1,5 +1,6 @@
 ﻿using Autofac.Extras.Moq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MonefyWeb.DomainServices.Models.Models.Users;
 using MonefyWeb.Infraestructure.Repository.Contracts;
 using MonefyWeb.Transversal.Models;
 
