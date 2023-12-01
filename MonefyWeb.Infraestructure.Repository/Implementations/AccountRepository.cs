@@ -91,6 +91,7 @@ namespace MonefyWeb.Infraestructure.Repository.Implementations
                     Amount = movement.Amount,
                     MovementDate = movement.Date,
                     Type = (EMovementType)movement.Type,
+                    Concept = movement.Concept,
                     PaymentMethod = (EPaymentMethod)movement.PaymentMethod,
                     CategoryId = movement.CategoryId,
                     CategoryName = _dbContext.Categories.Where(c => c.Id == accountId).Select(c => c.Name).First(),
