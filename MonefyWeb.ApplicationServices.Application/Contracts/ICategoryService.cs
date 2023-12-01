@@ -1,4 +1,4 @@
-﻿using MonefyWeb.DomainServices.Models.Models;
+﻿using MonefyWeb.DomainServices.Models.Models.Categories;
 
 namespace MonefyWeb.ApplicationServices.Application.Contracts
 {

@@ -1,6 +1,6 @@
 ﻿using MonefyWeb.Transversal.Models;
 
-namespace MonefyWeb.DomainServices.Models.Models
+namespace MonefyWeb.DomainServices.Models.Models.Movements
 {
     public class MovementBe
     {

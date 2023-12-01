@@ -1,7 +1,6 @@
-﻿using MonefyWeb.Infraestructure.Models.Models;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace MonefyWeb.Infraestructure.Models
+namespace MonefyWeb.Infraestructure.Models.Models.Currencies
 {
     public class CurrencyDm
     {

@@ -1,4 +1,4 @@
-﻿using MonefyWeb.DomainServices.Models.Models;
+﻿using MonefyWeb.DomainServices.Models.Models.Users;
 using MonefyWeb.Transversal.Models;
 
 namespace MonefyWeb.Infraestructure.Repository.Contracts

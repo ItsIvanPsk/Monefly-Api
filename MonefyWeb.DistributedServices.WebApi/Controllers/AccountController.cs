@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System.ComponentModel;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using MonefyWeb.ApplicationServices.Application.Contracts;
 using MonefyWeb.DistributedServices.Models.Models.Accounts;
@@ -7,7 +8,6 @@ using MonefyWeb.DistributedServices.WebApi.Contracts;
 using MonefyWeb.DistributedServices.WebApi.Validations;
 using MonefyWeb.Transversal.Aspects;
 using Swashbuckle.AspNetCore.Annotations;
-using System.ComponentModel;
 
 namespace MonefyWeb.DistributedServices.WebApi.Controllers
 {
@@ -60,7 +60,7 @@ namespace MonefyWeb.DistributedServices.WebApi.Controllers
             [SwaggerParameter("2")][DefaultValue(2)][FromRoute] string version
         )
         {
-            var validator = new AccountDataRequestValidator();
+            var validator = new IdValidator();
             var validationResult = validator.Validate(UserId);
 
             if (!validationResult.IsValid)
@@ -82,9 +82,20 @@ namespace MonefyWeb.DistributedServices.WebApi.Controllers
             [SwaggerParameter("2")][DefaultValue(2)][FromRoute] string version
         )
         {
+            var validator = new IdValidator();
+            var validationResult = validator.Validate(AccountId);
+
+            if (!validationResult.IsValid)
+            {
+                var errors = validationResult.Errors.Select(error => error.ErrorMessage).ToList();
+                return BadRequest(errors);
+            }
+
             var result = _application.GetMovementDetailData(AccountId);
+
             if (result.Count == 0)
                 return BadRequest(result);
+
             return Ok(result);
         }
 
@@ -99,7 +110,7 @@ namespace MonefyWeb.DistributedServices.WebApi.Controllers
             [SwaggerParameter("2")][DefaultValue(2)][FromRoute] string version
         )
         {
-            var validator = new AccountDataRequestValidator();
+            var validator = new IdValidator();
             var validationResult = validator.Validate(AccountId);
 
             if (!validationResult.IsValid)

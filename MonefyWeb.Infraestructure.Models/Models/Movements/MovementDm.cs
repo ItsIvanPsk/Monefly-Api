@@ -1,4 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using MonefyWeb.Infraestructure.Models.Models.Accounts;
+using MonefyWeb.Infraestructure.Models.Models.Categories;
+using MonefyWeb.Infraestructure.Models.Models.Currencies;
 
 namespace MonefyWeb.Infraestructure.Models
 {

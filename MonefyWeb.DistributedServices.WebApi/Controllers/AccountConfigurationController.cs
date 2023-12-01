@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+﻿using System.ComponentModel;
 using Microsoft.AspNetCore.Mvc;
 using MonefyWeb.ApplicationServices.Application.Contracts;
 using MonefyWeb.DistributedServices.Models.Models.Account_Configuration;
@@ -6,7 +6,6 @@ using MonefyWeb.DistributedServices.WebApi.Contracts;
 using MonefyWeb.DistributedServices.WebApi.Validations;
 using MonefyWeb.Transversal.Aspects;
 using Swashbuckle.AspNetCore.Annotations;
-using System.ComponentModel;
 
 namespace MonefyWeb.DistributedServices.WebApi.Controllers
 {
@@ -17,17 +16,14 @@ namespace MonefyWeb.DistributedServices.WebApi.Controllers
     {
         private readonly IAccountConfigurationService _application;
         private readonly Transversal.Utils.ILogger _log;
-        private readonly IMapper _mapper;
 
         public AccountConfigurationController(
             IAccountConfigurationService _application,
-            Transversal.Utils.ILogger _log,
-            IMapper _mapper
+            Transversal.Utils.ILogger _log
         )
         {
             this._application = _application;
             this._log = _log;
-            this._mapper = _mapper;
         }
 
         [Log]
@@ -64,7 +60,19 @@ namespace MonefyWeb.DistributedServices.WebApi.Controllers
             [SwaggerParameter("2")][DefaultValue(2)][FromRoute] string version
         )
         {
-            return Ok(_application.SetAccountConfiguration(config));
+            var validator = new AccountConfigurationValidator();
+            var results = validator.Validate(config);
+
+            if (!results.IsValid)
+            {
+                return BadRequest(results.Errors);
+            }
+            var result = _application.SetAccountConfiguration(config);
+
+            if (result is true)
+                return Ok(_application.SetAccountConfiguration(config));
+            else
+                return BadRequest(result);
         }
     }
 }
