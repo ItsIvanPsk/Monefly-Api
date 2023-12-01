@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MonefyWeb.DomainServices.Domain.Contracts;
-using MonefyWeb.DomainServices.Models.Models;
+using MonefyWeb.DomainServices.Models.Models.Accounts;
+using MonefyWeb.DomainServices.Models.Models.Movements;
 using MonefyWeb.Infraestructure.Repository.Contracts;
 using MonefyWeb.Transversal.Aspects;
 

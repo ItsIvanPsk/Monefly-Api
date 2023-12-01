@@ -1,6 +1,7 @@
-﻿using MonefyWeb.DistributedServices.WebApi.Models;
+﻿using MonefyWeb.DomainServices.Models.Models.Movements;
+using MonefyWeb.DomainServices.Models.Models.Users;
 
-namespace MonefyWeb.DomainServices.Models.Models
+namespace MonefyWeb.DomainServices.Models.Models.Accounts
 {
     public class AccountBe
     {

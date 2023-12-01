@@ -1,3 +1,4 @@
+using System.Text;
 using AutoMapper;
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -15,7 +16,6 @@ using MonefyWeb.Infraestructure.Repository.Implementations;
 using MonefyWeb.Transversal.Mappers;
 using MonefyWeb.Transversal.Utils;
 using MonefyWeb.Transversal.Utils.Health_Check;
-using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 

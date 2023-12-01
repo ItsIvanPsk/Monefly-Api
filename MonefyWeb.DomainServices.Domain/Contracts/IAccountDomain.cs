@@ -1,4 +1,5 @@
-﻿using MonefyWeb.DomainServices.Models.Models;
+﻿using MonefyWeb.DomainServices.Models.Models.Accounts;
+using MonefyWeb.DomainServices.Models.Models.Movements;
 
 namespace MonefyWeb.DomainServices.Domain.Contracts
 {

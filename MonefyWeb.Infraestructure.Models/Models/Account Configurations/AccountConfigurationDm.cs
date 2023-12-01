@@ -1,4 +1,6 @@
-﻿namespace MonefyWeb.Infraestructure.Models.Models
+﻿using MonefyWeb.Infraestructure.Models.Models.Accounts;
+
+namespace MonefyWeb.Infraestructure.Models.Models
 {
     public class AccountConfigurationDm
     {

@@ -1,4 +1,4 @@
-﻿namespace MonefyWeb.DomainServices.Models.Models
+﻿namespace MonefyWeb.DomainServices.Models.Models.Users
 {
     public class UserRegisterResponseBe
     {

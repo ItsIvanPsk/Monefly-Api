@@ -10,4 +10,8 @@
     <ProjectReference Include="..\MonefyWeb.Transversal.Models\MonefyWeb.Transversal.Models.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Models\Currencies\" />
+  </ItemGroup>
+
 </Project>

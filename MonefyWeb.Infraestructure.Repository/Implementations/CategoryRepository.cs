@@ -1,4 +1,4 @@
-﻿using MonefyWeb.DomainServices.Models.Models;
+﻿using MonefyWeb.DomainServices.Models.Models.Categories;
 using MonefyWeb.Infraestructure.Repository.Contracts;
 using MonefyWeb.Transversal.Aspects;
 

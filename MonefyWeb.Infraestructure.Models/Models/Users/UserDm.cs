@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using MonefyWeb.Infraestructure.Models.Models.Accounts;
 
-namespace MonefyWeb.Infraestructure.Models
+namespace MonefyWeb.Infraestructure.Models.Models.Users
 {
     public class UserDm
     {

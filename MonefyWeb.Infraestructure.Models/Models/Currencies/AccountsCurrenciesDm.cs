@@ -1,4 +1,7 @@
-﻿namespace MonefyWeb.Infraestructure.Models.Models
+﻿using MonefyWeb.Infraestructure.Models.Models.Accounts;
+using MonefyWeb.Infraestructure.Models.Models.Currencies;
+
+namespace MonefyWeb.Infraestructure.Models.Models
 {
     public class AccountsCurrenciesDm
     {

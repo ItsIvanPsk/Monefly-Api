@@ -1,4 +1,6 @@
-﻿namespace MonefyWeb.Infraestructure.Models
+﻿using MonefyWeb.Infraestructure.Models.Models.Categories;
+
+namespace MonefyWeb.Infraestructure.Models.Models.Users
 {
     public class UsersCategoriesDm
     {
