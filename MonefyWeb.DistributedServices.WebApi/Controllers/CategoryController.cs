@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System.ComponentModel;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using MonefyWeb.ApplicationServices.Application.Contracts;
 using MonefyWeb.DistributedServices.Models.Models.Categories;
@@ -6,7 +7,6 @@ using MonefyWeb.DistributedServices.WebApi.Contracts;
 using MonefyWeb.DistributedServices.WebApi.Validations;
 using MonefyWeb.Transversal.Aspects;
 using Swashbuckle.AspNetCore.Annotations;
-using System.ComponentModel;
 
 namespace MonefyWeb.DistributedServices.WebApi.Controllers
 {
@@ -17,14 +17,14 @@ namespace MonefyWeb.DistributedServices.WebApi.Controllers
     {
         private readonly ICategoryService _application;
         private readonly IMapper _mapper;
-        private readonly Transversal.Utils.ILogger _log;
+        private readonly Transversal.Utils.ILogger _logger;
 
 
-        public CategoryController(ICategoryService _application, Transversal.Utils.ILogger _log, IMapper mapper)
+        public CategoryController(ICategoryService _application, Transversal.Utils.ILogger _logger, IMapper _mapper)
         {
             this._application = _application;
-            this._log = _log;
-            _mapper = mapper;
+            this._logger = _logger;
+            this._mapper = _mapper;
         }
 
         [Log]

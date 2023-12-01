@@ -1,6 +1,6 @@
-﻿using MonefyWeb.Infraestructure.Models.Models;
+﻿using MonefyWeb.Infraestructure.Models.Models.Users;
 
-namespace MonefyWeb.Infraestructure.Models
+namespace MonefyWeb.Infraestructure.Models.Models.Accounts
 {
     public class AccountDm
     {

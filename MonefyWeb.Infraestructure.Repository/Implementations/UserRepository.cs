@@ -1,11 +1,15 @@
-﻿using Microsoft.EntityFrameworkCore;
-using MonefyWeb.DomainServices.Models.Models;
+﻿using System.Data.SqlTypes;
+using Microsoft.EntityFrameworkCore;
+using MonefyWeb.DomainServices.Models.Models.Users;
 using MonefyWeb.Infraestructure.Models;
 using MonefyWeb.Infraestructure.Models.Models;
+using MonefyWeb.Infraestructure.Models.Models.Accounts;
+using MonefyWeb.Infraestructure.Models.Models.Categories;
+using MonefyWeb.Infraestructure.Models.Models.Currencies;
+using MonefyWeb.Infraestructure.Models.Models.Users;
 using MonefyWeb.Infraestructure.Repository.Contracts;
 using MonefyWeb.Transversal.Exceptions;
 using MonefyWeb.Transversal.Models;
-using System.Data.SqlTypes;
 
 namespace MonefyWeb.Infraestructure.Repository.Implementations
 {

@@ -1,4 +1,4 @@
-﻿namespace MonefyWeb.DomainServices.Models.Models
+﻿namespace MonefyWeb.DomainServices.Models.Models.Categories
 {
     public class CategoryBe
     {

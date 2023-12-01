@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using MonefyWeb.ApplicationServices.Application.Contracts;
 using MonefyWeb.DomainServices.Domain.Contracts;
-using MonefyWeb.DomainServices.Models.Models;
+using MonefyWeb.DomainServices.Models.Models.Categories;
 using MonefyWeb.Transversal.Aspects;
 
 namespace MonefyWeb.ApplicationServices.Application.Implementations

@@ -1,4 +1,4 @@
-﻿namespace MonefyWeb.DistributedServices.WebApi.Models
+﻿namespace MonefyWeb.DomainServices.Models.Models.Users
 {
     public class UserBe
     {

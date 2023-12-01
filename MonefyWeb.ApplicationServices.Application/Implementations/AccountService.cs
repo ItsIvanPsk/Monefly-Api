@@ -3,7 +3,7 @@ using MonefyWeb.ApplicationServices.Application.Contracts;
 using MonefyWeb.DistributedServices.Models.Models.Accounts;
 using MonefyWeb.DistributedServices.Models.Models.Movements;
 using MonefyWeb.DomainServices.Domain.Contracts;
-using MonefyWeb.DomainServices.Models.Models;
+using MonefyWeb.DomainServices.Models.Models.Movements;
 using MonefyWeb.Transversal.Aspects;
 
 namespace MonefyWeb.ApplicationServices.Application.Implementations

@@ -1,11 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.ComponentModel;
+using Microsoft.AspNetCore.Mvc;
 using MonefyWeb.ApplicationServices.Application.Contracts;
 using MonefyWeb.DistributedServices.Models.Models.Users;
 using MonefyWeb.DistributedServices.WebApi.Contracts;
+using MonefyWeb.DistributedServices.WebApi.Validations;
 using MonefyWeb.Transversal.Aspects;
 using MonefyWeb.Transversal.Models;
 using Swashbuckle.AspNetCore.Annotations;
-using System.ComponentModel;
 
 namespace MonefyWeb.DistributedServices.WebApi.Controllers
 {
@@ -19,11 +20,11 @@ namespace MonefyWeb.DistributedServices.WebApi.Controllers
         private readonly Transversal.Utils.ILogger _log;
 
 
-        public UserController(IUserService _application, Transversal.Utils.ILogger _log, IAuthenticationService authentication)
+        public UserController(IUserService _application, Transversal.Utils.ILogger _log, IAuthenticationService _authentication)
         {
             this._application = _application;
             this._log = _log;
-            _authentication = authentication;
+            this._authentication = _authentication;
         }
 
         [Log]
@@ -35,6 +36,14 @@ namespace MonefyWeb.DistributedServices.WebApi.Controllers
             [SwaggerParameter("1")][DefaultValue(1)][FromQuery] long UserId
         )
         {
+            var validator = new IdValidator();
+            var results = validator.Validate(UserId);
+
+            if (!results.IsValid)
+            {
+                return BadRequest(results.Errors);
+            }
+
             var result = _application.GetUserData(UserId);
             if (result != new UserDataResponseDto()) { return Ok(result); }
             return BadRequest(result);
@@ -48,6 +57,13 @@ namespace MonefyWeb.DistributedServices.WebApi.Controllers
             LoginRequestDto request
         )
         {
+            var validator = new LoginRequestValidator();
+            var results = validator.Validate(request);
+
+            if (!results.IsValid)
+            {
+                return BadRequest(results.Errors);
+            }
             var result = _application.LoginUser(request);
             if (result.Status == true)
             {
@@ -64,6 +80,13 @@ namespace MonefyWeb.DistributedServices.WebApi.Controllers
             [SwaggerParameter("2")][DefaultValue(2)][FromRoute] string version,
             RegisterRequestDto request)
         {
+            var validator = new RegisterRequestValidator();
+            var results = validator.Validate(request);
+
+            if (!results.IsValid)
+            {
+                return BadRequest(results.Errors);
+            }
             var result = _application.RegisterUser(request);
             if (result.Status == true) { return Ok(result); }
             return BadRequest(result);

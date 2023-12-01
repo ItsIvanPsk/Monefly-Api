@@ -1,6 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MonefyWeb.Infraestructure.Models;
 using MonefyWeb.Infraestructure.Models.Models;
+using MonefyWeb.Infraestructure.Models.Models.Accounts;
+using MonefyWeb.Infraestructure.Models.Models.Categories;
+using MonefyWeb.Infraestructure.Models.Models.Currencies;
+using MonefyWeb.Infraestructure.Models.Models.Users;
 
 public class ApplicationDbContext : DbContext
 {

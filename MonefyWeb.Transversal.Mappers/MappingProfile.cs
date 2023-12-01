@@ -5,11 +5,16 @@ using MonefyWeb.DistributedServices.Models.Models.Accounts;
 using MonefyWeb.DistributedServices.Models.Models.Categories;
 using MonefyWeb.DistributedServices.Models.Models.Movements;
 using MonefyWeb.DistributedServices.Models.Models.Users;
-using MonefyWeb.DistributedServices.WebApi.Models;
 using MonefyWeb.DomainServices.Domain.Contracts;
-using MonefyWeb.DomainServices.Models.Models;
+using MonefyWeb.DomainServices.Models.Models.Accounts;
+using MonefyWeb.DomainServices.Models.Models.Categories;
+using MonefyWeb.DomainServices.Models.Models.Movements;
+using MonefyWeb.DomainServices.Models.Models.Users;
 using MonefyWeb.Infraestructure.Models;
 using MonefyWeb.Infraestructure.Models.Models;
+using MonefyWeb.Infraestructure.Models.Models.Accounts;
+using MonefyWeb.Infraestructure.Models.Models.Categories;
+using MonefyWeb.Infraestructure.Models.Models.Users;
 using MonefyWeb.Infraestructure.Repository.Contracts;
 
 namespace MonefyWeb.Transversal.Mappers

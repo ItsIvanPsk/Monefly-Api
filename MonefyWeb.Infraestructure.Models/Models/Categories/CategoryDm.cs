@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using MonefyWeb.Infraestructure.Models.Models.Users;
 
-namespace MonefyWeb.Infraestructure.Models
+namespace MonefyWeb.Infraestructure.Models.Models.Categories
 {
     public class CategoryDm
     {

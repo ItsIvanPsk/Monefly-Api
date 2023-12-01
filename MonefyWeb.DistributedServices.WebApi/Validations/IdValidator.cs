@@ -2,9 +2,9 @@
 
 namespace MonefyWeb.DistributedServices.WebApi.Validations
 {
-    public class AccountDataRequestValidator : AbstractValidator<long>
+    public class IdValidator : AbstractValidator<long>
     {
-        public AccountDataRequestValidator()
+        public IdValidator()
         {
             RuleFor(value => value)
                     .NotEmpty().WithMessage(Properties.Resources.ValueCannotBeEmpty)

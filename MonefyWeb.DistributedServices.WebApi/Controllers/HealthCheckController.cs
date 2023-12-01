@@ -1,9 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.ComponentModel;
+using System.Text.Json;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using MonefyWeb.Transversal.Aspects;
 using Swashbuckle.AspNetCore.Annotations;
-using System.ComponentModel;
-using System.Text.Json;
 
 namespace MonefyWeb.DistributedServices.WebApi.Controllers
 {
